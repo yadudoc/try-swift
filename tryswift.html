@@ -4,7 +4,7 @@
 			<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 			<title>Try Swift</title>
 
-			<!-- <script src="js/script.js"></script> -->
+			<script src="js/tryswift.js"></script>
 			<link rel="stylesheet" type="text/css" href="css/tryswift.css">
 			<script src="js/jquery.js" type="text/javascript"></script>
 			
@@ -13,11 +13,14 @@
 
 		<body>
 
-			<div id="tutorial">
+			<div id="wrapright">
 
-				<div id="header">
+			<div id="header">
 					<h1>Welcome to Try Swift!</h1>
 				</div>
+
+			<div id="tutorial">
+
 
 				<div class="example">
 					<h2>Introduction</h2>
@@ -76,18 +79,19 @@
 	<p>Let's take a closer look at this script and go through it line by line.</p>
 	<pre>type file;</pre>
 	<p>Most Swift scripts will make extensive use of files. This line allows us to use the file datatype and will be the first line of most scripts.</p>
-	<pre>app (file out) echo_app (string s)
-		{
-		echo s stdout=filename(out);
-	} 
+	<pre>
+app (file out) echo_app (string s)
+{
+  echo s stdout=filename(out);
+} 
 </pre>
 <p>The code above defines an application. In this case, the app is the unix utility echo. Every app function can define an input and an output. Outputs are defined to the left of the app name (file o). Inputs are defined to the right of the app name (string s).</p>
 <pre>echo s stdout=filename(o);</pre>
 <p>The echo command by itself does not create any files. Instead, what we do in this example is redirect the output of the command to a file by using <pre>stdout=filename(o)</pre></p>
 <p>Now that our app function is defined, let's create a file and call echo.</p>
 <pre>
-	file out <"out.txt">;
-	out = echo("Hello world!");
+file out <"out.txt">;
+out = echo("Hello world!");
 </pre>
 <p>Try running the program. When it is finished, you should see a file called out.txt get created that contains the text "Hello world!"</p>
 <h3>Exercises</h3>
@@ -104,24 +108,28 @@
 
 	<p>In this example, we first change our application. Instead of using "echo", we use an app called simulate. The simulate application serves as a trivial proxy for any more complex scientific simulation application. In this example, simulate will print a single number in the range of 1-100.</p>
 
-	<pre>app (file o) simulate_app ()
-		{
-		simulate stdout=filename(o);
-	}</pre>
+	<pre>
+app (file o) simulate_app ()
+{
+  simulate stdout=filename(o);
+}</pre>
 
 	<p>Swift is a simple scripting language for executing many instances of ordinary application programs on distributed parallel resources. Swift scripts run many copies of ordinary programs concurrently, using statements like this:</p>
 
-	<pre>foreach i in [1:10] {
-		string fname=strcat("output/sim_", i, ".out");
-		file f ;
-		f = simulate_app();
-	}</pre>
+	<pre>
+foreach i in [1:10] 
+{
+  string fname=strcat("output/sim_", i, ".out");
+  file f ;
+  f = simulate_app();
+}</pre>
 
 	<p>In this example the foreach loop will iterate over a range of numbers from 0 to 9. It will then map an output file and run the simulate app. The important thing to realize about this example is that every iteration will run in parallel (up to a user defined throttle).</p>
 
 	<p>Another new feature in this example is the file mapper. In the first hello world example, we saw a simplified version of a file mapper with the line:</p>
 
-	<pre>file out <"out.txt">;</pre>
+	<pre>
+file out <"out.txt">;</pre>
 
 	<p>This is the same as saying</p>
 
@@ -140,39 +148,43 @@
 
 	<p>The first change in this script is to the simulate script:</p>
 
-	<pre>app (file o) simulate_app (int time)
-		{
-		simulate "-t" time stdout=filename(o);
-	}</pre>
+	<pre>
+app (file o) simulate_app (int time)
+{
+  simulate "-t" time stdout=filename(o);
+}</pre>
 
 	<p>Simulate now takes an argument, time. The command "simulate -t 10" will sleep for 10 seconds before printing a value. This is an example of how to pass command line arguments to an app in Swift.</p>
 
 	<p>We introduce a new app call called stats:</p>
 
-	<pre>app (file o) stats_app (file s[])
-		{
-		stats filenames(s) stdout=filename(o);
-	}</pre>
+	<pre>
+app (file o) stats_app (file s[])
+{
+  stats filenames(s) stdout=filename(o);
+}</pre>
 
 	<p>The stats app function takes an array of files as input (file s[]). The stats app takes a list of files, reads the numbers contained inside, and prints the average value. The filenames() function simply prints a list of all filenames contained within a file array.
 	</p>
 
 	<p>Within the foreach loop:</p>
 
-	<pre>simout = simulate_app(time);
-		sims[i] = simout;</pre>
+	<pre>
+simout = simulate_app(time);
+sims[i] = simout;</pre>
 
 		<p>We now add each simout file to the sims array before finally passing all the files to stats</p>
 
-		<pre>foreach i in [1:nsims] {
-			string fname = strcat("output/sim_",i,".out");
-			file simout <single_file_mapper; file=fname>
-			simout = simulate_app(time);
-			sims[i] = simout;
-		}
+		<pre>
+foreach i in [1:nsims] {
+  string fname = strcat("output/sim_",i,".out");
+  file simout <single_file_mapper; file=fname>
+  simout = simulate_app(time);
+  sims[i] = simout;
+}
 
-		file average <"output/average.out">
-		average = stats_app(sims);</pre>
+file average <"output/average.out">
+average = stats_app(sims);</pre>
 
 		<p>Execute the script and view output/average.out to verify it succeeded.</p>
 
@@ -196,13 +208,16 @@
 
 		<p>Note that the workflow is based on data flow dependencies: each simulation depends on the seed value, calculated in these two dependent statements:</p>
 
-		<pre>seedfile = genseed_app(1);
-			int seedval = readData(seedfile);</pre>
+		<pre>
+seedfile = genseed_app(1);
+int seedval = readData(seedfile);</pre>
 
 			<p>The workflow also depends on the bias file, computed and then consumed in these two dependent statements:</p>
 
-			<pre>biasfile = genbias_app(1000, 20);
-				(simout,simlog) = simulation_app(steps, range, biasfile, 1000000, values);</pre>
+			<pre>
+biasfile = genbias_app(1000, 20);
+(simout,simlog) = simulation_app(steps, range, biasfile, 
+1000000, values);</pre>
 
 				<p>We produce 20 values in each bias file. Simulations of less than 20 values ignore the unneeded numbers, while simualtions of more than 20 will use the last bias number for all values past 20.</p>
 
@@ -218,6 +233,8 @@
 			</div>
 
 		</div> <!-- tutorial -->
+
+	</div> <!-- wrapright -->
 
 
 		<div id="workarea">
