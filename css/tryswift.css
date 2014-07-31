@@ -1,9 +1,9 @@
 #tutorial {
-  width: 50%;
+  width: 40%;
   margin-top: 0px;
   position: absolute;
   /*width: 20%;*/
-  left: 51%;
+  left: 55%;
   /*height: 100%;*/
 }
 
@@ -26,7 +26,7 @@ a:link {
 }
 
 #workarea {
-  width: 48%;
+  width: 52%;
   padding-left: 0px;
   margin-top: 0px;
   /*margin-right: 51%;*/
@@ -46,9 +46,18 @@ a:link {
   border: 1px solid black;
 }
 
+#buttons {
+  margin-top: 65%;
+  margin-left: 3.5%;
+}
+
+#previousButton {
+  margin-left: 30%;
+}
+
 #output {
   margin-left: 3.5%;
-  margin-top: 75%;
+  margin-top: 1%;
   width: 90%;
   height: 30%;
   border-width: 1px;
