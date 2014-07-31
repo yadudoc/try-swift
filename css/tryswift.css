@@ -4,7 +4,43 @@
   padding-top: 50px;
 }*/
 
+
 #tutorial {
-  margin-left: 600px;
+  float: left;
+  /*width: 20%;*/
+  margin-left: 51%;
+  display: block;
 }
 
+/*.example 
+  margin-right: 50px;
+}*/
+
+
+h1 {
+  margin-left: 200px;
+  font-size: 18pt;
+}
+
+a:link {
+  color: #1609f9;
+}
+
+#workarea {
+  width: 50%;
+  padding-left: 0px;
+  margin-top: 0px;
+  /*margin-right: 51%;*/
+  background: #f1f1f1;
+}
+
+#editor { 
+  position: absolute;
+  top: 35px;
+  right: 0;
+  bottom: 0;
+  left: 20px;
+  width: 45%;
+  height: 55%;
+  border: 1px solid black;
+}
