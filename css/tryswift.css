@@ -1,24 +1,23 @@
-/*.accordion {
-  width: 302px;
-  margin: 0 auto;
-  padding-top: 50px;
-}*/
-
-
 #tutorial {
-  float: left;
+  width: 50%;
+  margin-top: 0px;
+  position: absolute;
   /*width: 20%;*/
-  margin-left: 51%;
-  display: block;
+  left: 51%;
+  /*height: 100%;*/
 }
 
-/*.example 
-  margin-right: 50px;
-}*/
+.example {
+  font-size: 14px;
+}
+
+body {
+  background-color: #ffffff;
+}
 
 
 h1 {
-  margin-left: 200px;
+  text-align: center;
   font-size: 18pt;
 }
 
@@ -27,20 +26,54 @@ a:link {
 }
 
 #workarea {
-  width: 50%;
+  width: 48%;
   padding-left: 0px;
   margin-top: 0px;
   /*margin-right: 51%;*/
   background: #f1f1f1;
+  position: absolute;
+  height: 100%;
 }
 
 #editor { 
   position: absolute;
-  top: 35px;
+  top: 5%;
   right: 0;
   bottom: 0;
-  left: 20px;
-  width: 45%;
+  left: 3.5%;
+  width: 90%;
   height: 55%;
   border: 1px solid black;
 }
+
+#output {
+  margin-left: 3.5%;
+  margin-top: 75%;
+  width: 90%;
+  height: 30%;
+  border-width: 1px;
+  border-style: solid;
+  background: #ffffff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
