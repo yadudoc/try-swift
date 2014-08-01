@@ -1,7 +1,3 @@
-/*html, body {
-  height: 100%;
-}*/
-
 #wrapright {
   top: 0px;
   left: 55%;
@@ -66,14 +62,6 @@ h1 {
   position: absolute;
 }
 
-/*#workarea-bottom {
-  top: 62%;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  position: absolute;
-}
-*/
 #editor {
   position: absolute;
   top: 20px;
