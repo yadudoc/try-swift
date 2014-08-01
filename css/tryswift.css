@@ -54,7 +54,7 @@ a:link {
 }
 
 #workarea-bottom {
-  top: 63%;
+  top: 62%;
   bottom: 0;
   left: 0;
   right: 0;
@@ -86,7 +86,7 @@ a:link {
 
 #output {
   position: absolute;
-  top: 5px;
+  top: 6px;
   bottom: 20px;
   left: 10px;
   right: 20px;
