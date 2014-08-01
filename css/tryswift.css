@@ -1,10 +1,13 @@
-
+/*html, body {
+  height: 100%;
+}*/
 
 #wrapright {
   top: 0px;
   left: 55%;
   right: 10px;
-  position: fixed;
+  overflow: scroll;
+  position: absolute;
 }
 
 .example {
@@ -21,15 +24,14 @@ h1 {
   font-size: 18pt;
 }
 
-a:link {
+/*a:link {
   color: #1609f9;
-}
+}*/
 
 #workarea {
   width: 52%;
   padding-left: 0;
   top: 0;
-  /*margin-right: 51%;*/
   background: #f1f1f1;
   position: fixed;
   height: 100%;
@@ -41,7 +43,6 @@ a:link {
   position: absolute;
   right: 0;
   top: 0;
- /* border: 1px solid black;*/
 }
 
 #workarea-middle {
@@ -50,7 +51,6 @@ a:link {
   left: 0;
   right: 0;
   position: absolute;
-  /*border: 1px solid black;*/
 }
 
 #workarea-bottom {
@@ -59,7 +59,6 @@ a:link {
   left: 0;
   right: 0;
   position: absolute;
-  /*border: 1px solid black;*/
 }
 
 #editor {
