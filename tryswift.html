@@ -245,16 +245,16 @@ biasfile = genbias_app(1000, 20);
 
 		
 			<div id="code">
-				<div id="editor">
 
-
-				</div> 
+				<div id="workarea-top">
+				<div id="editor"></div> 
+				</div>
 
 				<script src="js/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
 
 				<script>
 				var editor = ace.edit("editor");
-				editor.setFontSize('13px');
+				editor.setFontSize('12px');
 				editor.setTheme("ace/theme/KatzenMilch");
 				editor.getSession().setMode("ace/mode/text");
 				// editor.setShowPrintMargin(false);
@@ -267,24 +267,26 @@ biasfile = genbias_app(1000, 20);
 
 			</div>  <!-- code  -->
 
-			<div id="buttons">
+			<div id="workarea-middle">
+			<div id="leftButtons">
 				<button id="executeButton">Execute</button>
 				<button id="reserButton">Reset</button>
 				<select id="outputs">
 					<option>File outputs</option>
 				</select>
-
-				
+			</div>
+			<div id="rightButtons">
 				<button id="previousButton">Previous</button>
 				<button id="nextButton">Next</button>
-				
 			</div> <!-- buttons -->
+			</div>
 
-
+			<div id="workarea-bottom">
 			<div id="output">
 				<pre id="swiftOutput"></pre>
 
 			</div> <!-- output -->
+			</div>
 
 		</div>
 

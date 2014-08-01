@@ -1,13 +1,10 @@
 
 
 #wrapright {
-  /*width: 40%;*/
-  margin-top: 0px;
-  position: absolute;
-  /*width: 20%;*/
+  top: 0px;
   left: 55%;
-  margin-left: 1%;
-  /*height: 100%;*/
+  right: 10px;
+  position: fixed;
 }
 
 .example {
@@ -31,48 +28,71 @@ a:link {
 #workarea {
   width: 52%;
   padding-left: 0;
-  margin-top: 0;
+  top: 0;
   /*margin-right: 51%;*/
   background: #f1f1f1;
-  position: absolute;
+  position: fixed;
   height: 100%;
 }
 
-#editor { 
+#workarea-top {
+  bottom: 42%;
+  left: 0;
   position: absolute;
-  top: 5%;
   right: 0;
+  top: 0;
+ /* border: 1px solid black;*/
+}
+
+#workarea-middle {
+  top: 58%;
+  bottom: 38%;
+  left: 0;
+  right: 0;
+  position: absolute;
+  /*border: 1px solid black;*/
+}
+
+#workarea-bottom {
+  top: 63%;
   bottom: 0;
-  left: 3.5%;
-  width: 90%;
-  height: 55%;
+  left: 0;
+  right: 0;
+  position: absolute;
+  /*border: 1px solid black;*/
+}
+
+#editor {
+  position: absolute;
+  top: 20px;
+  bottom: 0;
+  left: 10px;
+  right: 20px;
   border: 1px solid black;
 }
 
-#buttons {
-  margin-top: 65%;
-  margin-left: 3.5%;
+#leftButtons {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  bottom: 5px;
 }
 
-#previousButton {
-  margin-left: 30%;
+#rightButtons {
+  position: absolute;
+  top: 5px;
+  right: 20px;
 }
 
 #output {
-  margin-left: 3.5%;
-  margin-top: 1%;
-  width: 90%;
-  height: 30%;
-  border-width: 1px;
-  border-style: solid;
+  position: absolute;
+  top: 5px;
+  bottom: 20px;
+  left: 10px;
+  right: 20px;
+  border: 1px solid black;
   background: #ffffff;
 }
-
-/*@media screen and (max-width: 1000px) {
-  #tutorial, #workarea {
-    width: 100%;
-  }
-}*/
 
 
 
