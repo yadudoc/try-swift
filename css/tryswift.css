@@ -105,6 +105,11 @@ h1 {
   border: 1px solid black;
 }
 
+#executeButton, #resetButton, #outputs, #previousButton, #nextButton {
+  height: 21px;
+  cursor: pointer;
+}
+
 
 
 
