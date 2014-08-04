@@ -50,11 +50,25 @@ function reset_text() {
 }
 
 function execute_code() {
-	sourceCode = editor.getValue();
+	var sourceCode = editor.getValue();
 	if (!sourceCode) {
 		alert("Source text is empty!");
 		return false;
 	}
+
+	$.ajax({
+		type: 'POST',
+		url: 'tryswift.php',
+		data:{'source': sourceCode},
+	})
+	.done(function (data) {
+		var urlArray = data.split("\n");
+		tailf(urlArray[0], "#swiftOutput");
+	});
+
+	// $.post("tryswift.php", { source: sourceCode }).done(function(data) {
+	// 	alert("done!");
+	// })
 
 }
 

@@ -6,6 +6,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"> </script>
 <!-- <script src="js/tryswift.js"></script> -->
 <script src="js/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/logtail.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="css/tryswift.css">
 
 
