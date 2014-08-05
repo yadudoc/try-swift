@@ -18,6 +18,7 @@ function show_next() {
 		setVisiblePage(currentPage);
 		editor.setValue($('#source-' + currentPage).text(), -1);
 		prev.removeAttribute('disabled');
+		$("#swiftOutput").hide();
 		if (currentPage == maxPage) {
 			next.setAttribute('disabled', true);
 		}
@@ -30,6 +31,7 @@ function show_prev() {
 		setVisiblePage(currentPage);
 		editor.setValue($('#source-' + currentPage).text(), -1);
 		next.removeAttribute('disabled');
+		$("#swiftOutput").hide();
 		if (currentPage == 1) {
 			prev.setAttribute('disabled', true);
 		}

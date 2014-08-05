@@ -110,7 +110,9 @@ h1 {
   cursor: pointer;
 }
 
-
+#swiftOutput {
+  display: block;
+}
 
 
 
