@@ -8,7 +8,7 @@
    // var_dump($_POST["source"]);
    $source = $_POST['source'];
    $web_directory = "/Applications/MAMP/htdocs/try-swift";
-   $swift_cmd = "/Applications/MAMP/htdocs/try-swift/swift-0.95-RC6/bin/swift -config swift.properties script.swift -site=local";
+   $swift_cmd = "/Applications/MAMP/htdocs/try-swift/swift-0.95-RC6/bin/swift script.swift -site=local";
 
    # Create directory structure
    $unique = uniqid();
@@ -27,10 +27,11 @@
 
    # Run Swift
    system("echo Swift run starting at $( date +%I:%M:%S ) > $dirname/swift.out");
-   system("which java >> $dirname/swift.out ");
-   system("$swift_cmd -version >> $dirname/swift.out");
-   // system("$swift_cmd 2>&1 | sed -u -e 's/^[ \t]*//' -e s/'Selecting site:'/Ready:/g -e s/'Finished successfully:'/Done:/g >> $dirname/swift.out &");
-
+   # system("which java >> $dirname/swift.out ");
+   # system("$swift_cmd -version >> $dirname/swift.out");
+   # system("$swift_cmd 2>&1 | sed -u -e 's/^[ \t]*//' -e s/'Selecting site:'/Ready:/g -e s/'Finished successfully:'/Done:/g >> $dirname/swift.out &");
+   system("DYLD_LIBRARY_PATH=\"\" $swift_cmd > $dirname/swift.out 2>&1 ");
+   system("who >> $dirname/swift.out");
    print "runs/$unique/swift.out\n";
    print "runs/$unique\n";
 ?>

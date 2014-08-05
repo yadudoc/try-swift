@@ -63,6 +63,7 @@ function execute_code() {
 	})
 	.done(function (data) {
 		var urlArray = data.split("\n");
+                alert(urlArray[0]);
 		tailf(urlArray[0], "#swiftOutput");
 	});
 
