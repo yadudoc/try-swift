@@ -114,7 +114,7 @@ function get_log() {
 }
 
 function scroll(where) {
-   $("#swiftOutputDiv").animate({ scrollTop: $('#swiftOutputDiv')[0].scrollHeight}, 'slow');
+   $("#output").animate({ scrollTop: $('#output')[0].scrollHeight}, 'slow');
 }
 
 function show_log() {

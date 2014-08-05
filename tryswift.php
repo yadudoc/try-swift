@@ -31,7 +31,7 @@
    # system("$swift_cmd -version >> $dirname/swift.out");
    # system("$swift_cmd 2>&1 | sed -u -e 's/^[ \t]*//' -e s/'Selecting site:'/Ready:/g -e s/'Finished successfully:'/Done:/g >> $dirname/swift.out &");
    system("DYLD_LIBRARY_PATH=\"\" $swift_cmd > $dirname/swift.out 2>&1 ");
-   system("who >> $dirname/swift.out");
+   # system("who >> $dirname/swift.out");
    print "runs/$unique/swift.out\n";
    print "runs/$unique\n";
 ?>

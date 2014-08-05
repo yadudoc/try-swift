@@ -18,7 +18,7 @@ function show_next() {
 		setVisiblePage(currentPage);
 		editor.setValue($('#source-' + currentPage).text(), -1);
 		prev.removeAttribute('disabled');
-		$("#swiftOutput").hide();
+		document.getElementById('swiftOutput').innerHTML = "";
 		if (currentPage == maxPage) {
 			next.setAttribute('disabled', true);
 		}
@@ -31,7 +31,7 @@ function show_prev() {
 		setVisiblePage(currentPage);
 		editor.setValue($('#source-' + currentPage).text(), -1);
 		next.removeAttribute('disabled');
-		$("#swiftOutput").hide();
+		document.getElementById('swiftOutput').innerHTML = "";
 		if (currentPage == 1) {
 			prev.setAttribute('disabled', true);
 		}
@@ -65,7 +65,6 @@ function execute_code() {
 	})
 	.done(function (data) {
 		var urlArray = data.split("\n");
-                alert(urlArray[0]);
 		tailf(urlArray[0], "#swiftOutput");
 	});
 
