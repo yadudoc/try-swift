@@ -1,0 +1,5 @@
+foreach.max.threads=10
+execution.retries=0
+wrapperlog.always.transfer=false
+ticker.date.format=hh:mm:ss
+ticker.prefix=

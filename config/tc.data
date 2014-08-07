@@ -1,0 +1,11 @@
+local echo /bin/echo
+local cat /bin/cat
+local grep /bin/grep
+local sort /bin/sort
+local paste /usr/bin/paste
+local wc /usr/bin/wc
+local sleep /bin/sleep
+local simulate /home/tryswift/tryswift/bin/simulate.sh
+local stats /home/tryswift/tryswift/bin/stats.sh
+local genseed /home/tryswift/tryswift/bin/simulate.sh
+local genbias /home/tryswift/tryswift/bin/simulate.sh
