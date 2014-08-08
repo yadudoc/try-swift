@@ -46,7 +46,7 @@ function show_prev() {
 
 
 var editor = ace.edit("editor");
-editor.setFontSize('12px');
+editor.setFontSize('16px');
 editor.setTheme("ace/theme/KatzenMilch");
 editor.getSession().setMode("ace/mode/text");
 // editor.setShowPrintMargin(false);
