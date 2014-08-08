@@ -17,7 +17,7 @@ fi
 swiftpid=$( cat swift.pid )
 while ps -p $swiftpid > /dev/null 
 do
-   sleep 1
+    sleep 1
 done
 
 exit 0

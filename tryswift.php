@@ -7,7 +7,7 @@
 
    $source = $_POST['source'];
    $web_directory = "/home/tryswift/tryswift";
-   $swift_cmd = "nohup /home/tryswift/tryswift/swift-0.95-RC6/bin/swift -sites.file sites.xml -tc.file tc.data -config cf script.swift";
+   $swift_cmd = "nohup /home/tryswift/swift-trunk/cog/modules/swift/dist/swift-svn/bin/swift -sites.file sites.xml -tc.file tc.data -config cf script.swift";
 
    # Create directory structure
    $unique = uniqid();

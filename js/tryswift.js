@@ -73,22 +73,30 @@ function execute_code() {
 	.done(function (data) {
 		
 		var urlArray = data.split("\n");
-		// alert(urlArray[0]);
 		tailf(urlArray[0], "#swiftOutput");
 		
-		$.ajax({
-			type: 'POST',
-			    url: 'getfiles.php',
-			    data:{'dir': urlArray[1]},
-			    })
-		    .done(function (filedata) {
-			    $('#outputs').append(filedata);
-			    var x = document.getElementById("outputs");
-			    if (x.length > 0) {
-				x.remove(x.length-1);
-			    }
-			    $('#outputs').show();
-			});
+		//		$.ajax({
+		//	type: 'POST',
+		//	    url: 'getfiles.php',
+		//	    data:{'dir': urlArray[1]},
+		//	    })
+		//  .done(function (filedata) {
+		//	    $('#outputs').append(filedata);
+
+		$.post("getfiles.php", {dir: urlArray[1]}).done(function(filedata) {
+			$('#outputs').append(filedata);
+			var x = document.getElementById("outputs");
+			//	if (x.length > 0) {
+			//  x.remove(x.length-1);
+			//	}
+			$('#outputs').show();
+		    });
+		//	    var x = document.getElementById("outputs");
+		//	    if (x.length > 0) {
+		//		x.remove(x.length-1);
+		//	    }
+		//	    $('#outputs').show();
+			    //	});
 	    });
 	
 }
