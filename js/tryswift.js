@@ -14,6 +14,7 @@ function setVisiblePage(n) {
 
 function hideFiles() {
     document.getElementById('outputs').innerHTML = "<option>File outputs</option>";
+    $('#outputs').hide();
 }
 
 function show_next() {
@@ -80,19 +81,16 @@ function execute_code() {
 			    url: 'getfiles.php',
 			    data:{'dir': urlArray[1]},
 			    })
-		  .done(function (filedata) {
-			  $('#outputs').append(filedata);
-			  var x = document.getElementById("outputs");
-			  if (x.length > 0) {
-			      x.remove(x.length-1);
-			  }
+		    .done(function (filedata) {
+			    $('#outputs').append(filedata);
+			    var x = document.getElementById("outputs");
+			    if (x.length > 0) {
+				x.remove(x.length-1);
+			    }
+			    $('#outputs').show();
 			});
-	});
-	//alert("execute clicked. in tryswift.js 2");
-	// $.post("tryswift.php", { source: sourceCode }).done(function(data) {
-	// 	alert("done!");
-	// })
-
+	    });
+	
 }
 
 function popupwindow(url, name, w, h) {
@@ -102,6 +100,7 @@ function popupwindow(url, name, w, h) {
 } 
 
 document.addEventListener('DOMContentLoaded', function() {
+	// $('#outputs').hide();
 
 	maxPage = document.getElementsByClassName('example').length;
 

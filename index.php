@@ -564,6 +564,9 @@ file stats_log<"output/average.log">;
 				<select id="outputs">
 					<option value="files">File outputs</option>
 				</select>
+  <script type="text/javascript">
+  $('#outputs').hide();
+  </script>
 			</div>
 			<div id="rightButtons">
 				<button id="previousButton" disabled="true">Previous</button>
