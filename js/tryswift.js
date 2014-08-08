@@ -12,6 +12,10 @@ function setVisiblePage(n) {
   visiblePage.classList.remove('hidden');
 }
 
+function hideFiles() {
+    document.getElementById('outputs').innerHTML = "<option>File outputs</option>";
+}
+
 function show_next() {
 	currentPage++;
 	if (currentPage <= maxPage) {
@@ -19,6 +23,7 @@ function show_next() {
 		editor.setValue($('#source-' + currentPage).text(), -1);
 		prev.removeAttribute('disabled');
 		document.getElementById('swiftOutput').innerHTML = "";
+		hideFiles();
 		if (currentPage == maxPage) {
 			next.setAttribute('disabled', true);
 		}
@@ -32,6 +37,7 @@ function show_prev() {
 		editor.setValue($('#source-' + currentPage).text(), -1);
 		next.removeAttribute('disabled');
 		document.getElementById('swiftOutput').innerHTML = "";
+		hideFiles();
 		if (currentPage == 1) {
 			prev.setAttribute('disabled', true);
 		}
@@ -57,22 +63,43 @@ function execute_code() {
 		alert("Source text is empty!");
 		return false;
 	}
-
+	//alert("execute clicked. in tryswift.js 1 ");
 	$.ajax({
 		type: 'POST',
 		url: 'tryswift.php',
 		data:{'source': sourceCode},
 	})
 	.done(function (data) {
+		
 		var urlArray = data.split("\n");
+		// alert(urlArray[0]);
 		tailf(urlArray[0], "#swiftOutput");
+		
+		$.ajax({
+			type: 'POST',
+			    url: 'getfiles.php',
+			    data:{'dir': urlArray[1]},
+			    })
+		  .done(function (filedata) {
+			  $('#outputs').append(filedata);
+			  var x = document.getElementById("outputs");
+			  if (x.length > 0) {
+			      x.remove(x.length-1);
+			  }
+			});
 	});
-
+	//alert("execute clicked. in tryswift.js 2");
 	// $.post("tryswift.php", { source: sourceCode }).done(function(data) {
 	// 	alert("done!");
 	// })
 
 }
+
+function popupwindow(url, name, w, h) {
+    var left = (screen.width/2)-(w/2);
+    var top = (screen.height/2)-(h/2);
+    return window.open(url, name, 'width='+w+', height='+h+', top='+top+', left='+left);
+} 
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -87,6 +114,14 @@ document.addEventListener('DOMContentLoaded', function() {
 	prev.addEventListener('click', show_prev);
 	reset.addEventListener('click', reset_text);
 	execute.addEventListener('click', execute_code);
+
+	$(document).on("change", "#outputs", function(){
+		var selected = $('#outputs').val();
+		if (selected != "File outputs") {
+		popupwindow($('#outputs').val(), '', 800, 600); 
+		}
+		// $('#swiftOutput').load($("#outputs").val());
+	    });
 
 	setVisiblePage(1);
 	editor.setValue($("#source-1").text(), -1);
