@@ -6,12 +6,13 @@
   top: 0px;
   left: 55%;
   right: 10px;
-  overflow: scroll;
+  /* overflow: scroll; */
   position: absolute;
 }
 
 .example {
   font-size: 16px;
+  background-color: white;
 }
 
 .example.hidden {
