@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
 <meta name="generator" content="AsciiDoc 8.6.9" />
-<title>Welcome to Try Swift!</title>
+<title></title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -733,74 +733,60 @@ asciidoc.install();
 </head>
 <body class="article">
 <div id="header">
-<h1>Welcome to Try Swift!</h1>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_introduction">Introduction</h2>
+<h2 id="_hello_world">Hello World!</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>This web interface lets you learn Swift from your browser - nothing to install.
-You can run the built-in example scripts, change them, and run your own scripts.</p></div>
-<div class="ulist"><ul>
+<div class="paragraph"><p>Let&#8217;s take a closer look at this script and go through it line by line.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>type file;</code></pre>
+</div></div>
+<div class="paragraph"><p>Most Swift scripts will make extensive use of files. This line allows us to use the file datatype and will be the first line of most scripts.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>app (file out) echo_app (string s)
+{
+  echo s stdout=filename(out);
+}</code></pre>
+</div></div>
+<div class="paragraph"><p>The code above defines an application. In this case, the app is the unix utility echo. Every app function can define an input and an output. Outputs are defined to the left of the app name (file o). Inputs are defined to the right of the app name (string s).</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>echo s stdout=filename(o);</code></pre>
+</div></div>
+<div class="paragraph"><p>The echo command by itself does not create any files. Instead, what we do in this example is redirect the output of the command to a file by using:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>stdout=filename(o)</code></pre>
+</div></div>
+<div class="paragraph"><p>Now that our app function is defined, let&#8217;s create a file and call echo.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>file out &lt;"out.txt"&gt;;
+out = echo("Hello world!");</code></pre>
+</div></div>
+<div class="paragraph"><p>Try running the program. When it is finished, you should see a file called out.txt get created that contains the text "Hello world!"</p></div>
+<div class="olist arabic"><div class="title">Exercises</div><ol class="arabic">
 <li>
 <p>
-select a code example using the navigation buttons
+Change the text from "Hello world!" to "Hello Swift!"
 </p>
 </li>
 <li>
 <p>
-view the explanation of the example here
-</p>
-</li>
-<li>
-<p>
-click [Execute] to run the example
-</p>
-</li>
-<li>
-<p>
-click [File outputs] to view the output files produced by your script
-</p>
-</li>
-<li>
-<p>
-click [Reset] to restore the example to its initial state (LOSES YOUR CHANGES!)
-</p>
-</li>
-</ul></div>
-<div class="olist arabic"><div class="title">The example scripts are:</div><ol class="arabic">
-<li>
-<p>
-<strong>Hello World</strong> - Shows the basic syntax for running an app to produce a file
-</p>
-</li>
-<li>
-<p>
-<strong>Foreach</strong> - Introduces the foreach statement to run multiple apps parallel
-</p>
-</li>
-<li>
-<p>
-<strong>Multiple apps</strong> - Show dependencies between apps to specify a workflow
-</p>
-</li>
-<li>
-<p>
-<strong>Multi-stage</strong> - Example of a larger multi-stage workflow
+Change the name of the output file.
 </p>
 </li>
 </ol></div>
-<div class="paragraph"><p>To test your own script, enter some Swift code below, or in any other window.</p></div>
-<div class="paragraph"><p>TrySwift gives you a few built-in "apps" to run, as needed by each example.
-It executes on a pool of virtual machines, one VM per Swift run (at the moment).</p></div>
-<div class="paragraph"><p>The Swift language is explained in the <a href="http://swift-lang.org/docs">Swift User Guide</a>.</p></div>
 </div>
 </div>
 </div>
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-08-11 09:45:10 CDT
+Last updated 2014-08-11 09:45:15 CDT
 </div>
 </div>
 </body>

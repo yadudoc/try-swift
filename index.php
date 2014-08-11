@@ -25,7 +25,7 @@
 
 <div class="example hidden" id="page-1">
 
-<iframe src="scripts/page-1.html" style="border-style: none; width: 100%; height: 800px"></iframe>
+<iframe src="scripts/page-1.html" style="border-style: none; width: 100%; height: 1000px;"></iframe>
 
 <!-- <h2>Introduction</h2>
 <p>
@@ -82,12 +82,9 @@ tracef("Hello, World! This is my %s code!\n","Swift");</textarea>
 
 <div class="example hidden" id="page-2">
 
-<!-- <script type="text/javascript">
-$(function() {
-	$("#page-2").load("test.html");
-});
-</script> -->
-	<h2>Hello World!</h2>
+<iframe src="scripts/page-2.html" style="border-style: none; width: 100%; height: 100%"></iframe>
+
+	<!-- <h2>Hello World!</h2>
 
 
 	<p>Let's take a closer look at this script and go through it line by line.</p>
@@ -112,7 +109,7 @@ out = echo("Hello world!");
 <ul>
 	<li>Change the text from "Hello world!" to "Hello Swift!"</li>
 	<li>Change the name of the output file</li>
-</ul>
+</ul> -->
 
 <textarea id="source-2">
 type file;
@@ -129,7 +126,10 @@ out = echo_app("Hello world!");
 </div>
 
 <div class="example hidden" id="page-3">
-	<h2>Foreach</h2>
+
+<iframe src="scripts/page-3.html" style="border-style: none; width: 100%; height: 1000px"></iframe>
+
+	<!-- <h2>Foreach</h2>
 
 
 	<p>In this example, we first change our application. Instead of using "echo", we use an app called simulate. The simulate application serves as a trivial proxy for any more complex scientific simulation application. In this example, simulate will print a single number in the range of 1-100.</p>
@@ -163,7 +163,7 @@ file out <"out.txt">;</pre>
 
 	<p>Defining a file mapper in this way allows a file name to be the content of a string or the output of another function. The strcat function combines multiple strings into a single string.</p>
 
-	<p>Execute the script and examine the results. You should see 10 files creates with random numbers.</p>
+	<p>Execute the script and examine the results. You should see 10 files creates with random numbers.</p> -->
 
 <textarea id="source-3">
 type file;
@@ -185,7 +185,9 @@ foreach i in [1:10] {
 
 
 <div class="example hidden" id="page-4">
-	<h2>Multiple apps</h2>
+
+<iframe src="scripts/page-4.html" style="border-style: none; width: 100%; height: 1000px"></iframe>
+	<!-- <h2>Multiple apps</h2>
 	<p>After all the parallel simulations in an ensemble run have completed, it is typically necessary to gather and analyze their results with some kind of post-processing analysis program or script. This script shows an example of this.</p>
 
 	<p>The first change in this script is to the simulate script:</p>
@@ -237,7 +239,7 @@ average = stats_app(sims);</pre>
 
 			<li>Modify the simulate command line arguments. The current arguments are "-t time". Simulate takes another command line option, -r. The -r option sets the range of random numbers it generates. Call simulate with the added options -r 1000.</li>
 
-		</ul>
+		</ul> -->
 
 <textarea id="source-4">
 type file;
@@ -270,7 +272,10 @@ average = stats_app(sims);
 	</div>
 
 	<div class="example hidden" id="page-5">
-		<h2>Multi-stage workflows</h2>
+
+		<iframe src="scripts/page-5.html" style="border-style: none; width: 100%; height: 1000px"></iframe>
+
+		<!-- <h2>Multi-stage workflows</h2>
 
 		<p>This example expands the workflow pattern of the previous example by adding additional stages to the workflow. Here, we generate a dynamic seed value that will be used by all of the simulations, and for each simulation, we run an pre-processing application to generate a unique "bias file". This pattern is shown below, followed by the Swift script.</p>
 
@@ -298,7 +303,7 @@ biasfile = genbias_app(1000, 20);
 
 					<li>Modify the script to generate a unique seed value for each simulation</li>
 
-				</ul>
+				</ul> -->
 
 <textarea id="source-5">
 type file;

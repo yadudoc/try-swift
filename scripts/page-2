@@ -1,0 +1,37 @@
+Hello World!
+------------
+
+Let's take a closer look at this script and go through it line by line.
+-----
+type file;
+-----
+
+Most Swift scripts will make extensive use of files. This line allows us to use the file datatype and will be the first line of most scripts.
+-----
+app (file out) echo_app (string s)
+{
+  echo s stdout=filename(out);
+} 
+-----
+
+The code above defines an application. In this case, the app is the unix utility echo. Every app function can define an input and an output. Outputs are defined to the left of the app name (file o). Inputs are defined to the right of the app name (string s).
+-----
+echo s stdout=filename(o);
+-----
+
+The echo command by itself does not create any files. Instead, what we do in this example is redirect the output of the command to a file by using:
+-----
+stdout=filename(o)
+-----
+
+Now that our app function is defined, let's create a file and call echo.
+-----
+file out <"out.txt">;
+out = echo("Hello world!");
+-----
+
+Try running the program. When it is finished, you should see a file called out.txt get created that contains the text "Hello world!"
+
+.Exercises
+. Change the text from "Hello world!" to "Hello Swift!"
+. Change the name of the output file.

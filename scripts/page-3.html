@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
 <meta name="generator" content="AsciiDoc 8.6.9" />
-<title>Welcome to Try Swift!</title>
+<title></title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -733,74 +733,49 @@ asciidoc.install();
 </head>
 <body class="article">
 <div id="header">
-<h1>Welcome to Try Swift!</h1>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_introduction">Introduction</h2>
+<h2 id="_foreach">Foreach</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>This web interface lets you learn Swift from your browser - nothing to install.
-You can run the built-in example scripts, change them, and run your own scripts.</p></div>
-<div class="ulist"><ul>
-<li>
-<p>
-select a code example using the navigation buttons
-</p>
-</li>
-<li>
-<p>
-view the explanation of the example here
-</p>
-</li>
-<li>
-<p>
-click [Execute] to run the example
-</p>
-</li>
-<li>
-<p>
-click [File outputs] to view the output files produced by your script
-</p>
-</li>
-<li>
-<p>
-click [Reset] to restore the example to its initial state (LOSES YOUR CHANGES!)
-</p>
-</li>
-</ul></div>
-<div class="olist arabic"><div class="title">The example scripts are:</div><ol class="arabic">
-<li>
-<p>
-<strong>Hello World</strong> - Shows the basic syntax for running an app to produce a file
-</p>
-</li>
-<li>
-<p>
-<strong>Foreach</strong> - Introduces the foreach statement to run multiple apps parallel
-</p>
-</li>
-<li>
-<p>
-<strong>Multiple apps</strong> - Show dependencies between apps to specify a workflow
-</p>
-</li>
-<li>
-<p>
-<strong>Multi-stage</strong> - Example of a larger multi-stage workflow
-</p>
-</li>
-</ol></div>
-<div class="paragraph"><p>To test your own script, enter some Swift code below, or in any other window.</p></div>
-<div class="paragraph"><p>TrySwift gives you a few built-in "apps" to run, as needed by each example.
-It executes on a pool of virtual machines, one VM per Swift run (at the moment).</p></div>
-<div class="paragraph"><p>The Swift language is explained in the <a href="http://swift-lang.org/docs">Swift User Guide</a>.</p></div>
+<div class="paragraph"><p>In this example, we first change our application. Instead of using "echo", we use an app called simulate. The simulate application serves as a trivial proxy for any more complex scientific simulation application. In this example, simulate will print a single number in the range of 1-100.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>app (file o) simulate_app ()
+{
+  simulate stdout=filename(o);
+}</code></pre>
+</div></div>
+<div class="paragraph"><p>Swift is a simple scripting language for executing many instances of ordinary application programs on distributed parallel resources. Swift scripts run many copies of ordinary programs concurrently, using statements like this:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>foreach i in [1:10]
+{
+  string fname=strcat("output/sim_", i, ".out");
+  file f ;
+  f = simulate_app();
+}</code></pre>
+</div></div>
+<div class="paragraph"><p>In this example the foreach loop will iterate over a range of numbers from 0 to 9. It will then map an output file and run the simulate app. The important thing to realize about this example is that every iteration will run in parallel (up to a user defined throttle).</p></div>
+<div class="paragraph"><p>Another new feature in this example is the file mapper. In the first hello world example, we saw a simplified version of a file mapper with the line:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>file out &lt;"out.txt"&gt;;</code></pre>
+</div></div>
+<div class="paragraph"><p>This is the same as saying:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>file out &lt;single_file_mapper; file="output.txt"&gt;;</code></pre>
+</div></div>
+<div class="paragraph"><p>Defining a file mapper in this way allows a file name to be the content of a string or the output of another function. The strcat function combines multiple strings into a single string.</p></div>
+<div class="paragraph"><p>Execute the script and examine the results. You should see 10 files creates with random numbers.</p></div>
 </div>
 </div>
 </div>
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-08-11 09:45:10 CDT
+Last updated 2014-08-11 09:45:18 CDT
 </div>
 </div>
 </body>

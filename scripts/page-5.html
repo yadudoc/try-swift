@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
 <meta name="generator" content="AsciiDoc 8.6.9" />
-<title>Welcome to Try Swift!</title>
+<title></title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -733,74 +733,50 @@ asciidoc.install();
 </head>
 <body class="article">
 <div id="header">
-<h1>Welcome to Try Swift!</h1>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_introduction">Introduction</h2>
+<h2 id="_multi_stage_workflows">Multi-stage workflows</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>This web interface lets you learn Swift from your browser - nothing to install.
-You can run the built-in example scripts, change them, and run your own scripts.</p></div>
-<div class="ulist"><ul>
+<div class="paragraph"><p>This example expands the workflow pattern of the previous example by adding additional stages to the workflow. Here, we generate a dynamic seed value that will be used by all of the simulations, and for each simulation, we run an pre-processing application to generate a unique "bias file". This pattern is shown below, followed by the Swift script.</p></div>
+<div class="imageblock" style="text-align:center;">
+<div class="content">
+<img src="005-multistage.png" alt="005-multistage.png" />
+</div>
+</div>
+<div class="paragraph"><p>Note that the workflow is based on data flow dependencies: each simulation depends on the seed value, calculated in these two dependent statements:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>seedfile = genseed_app(1);
+int seedval = readData(seedfile);</code></pre>
+</div></div>
+<div class="paragraph"><p>The workflow also depends on the bias file, computed and then consumed in these two dependent statements:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>biasfile = genbias_app(1000, 20);
+(simout,simlog) = simulation_app(steps, range, biasfile,
+1000000, values);</code></pre>
+</div></div>
+<div class="paragraph"><p>We produce 20 values in each bias file. Simulations of less than 20 values ignore the unneeded numbers, while simualtions of more than 20 will use the last bias number for all values past 20.</p></div>
+<div class="olist arabic"><div class="title">Exercises</div><ol class="arabic">
 <li>
 <p>
-select a code example using the navigation buttons
+Adjust the code to produce the same number of bias values as is needed for each simulation.
 </p>
 </li>
 <li>
 <p>
-view the explanation of the example here
-</p>
-</li>
-<li>
-<p>
-click [Execute] to run the example
-</p>
-</li>
-<li>
-<p>
-click [File outputs] to view the output files produced by your script
-</p>
-</li>
-<li>
-<p>
-click [Reset] to restore the example to its initial state (LOSES YOUR CHANGES!)
-</p>
-</li>
-</ul></div>
-<div class="olist arabic"><div class="title">The example scripts are:</div><ol class="arabic">
-<li>
-<p>
-<strong>Hello World</strong> - Shows the basic syntax for running an app to produce a file
-</p>
-</li>
-<li>
-<p>
-<strong>Foreach</strong> - Introduces the foreach statement to run multiple apps parallel
-</p>
-</li>
-<li>
-<p>
-<strong>Multiple apps</strong> - Show dependencies between apps to specify a workflow
-</p>
-</li>
-<li>
-<p>
-<strong>Multi-stage</strong> - Example of a larger multi-stage workflow
+Modify the script to generate a unique seed value for each simulation.
 </p>
 </li>
 </ol></div>
-<div class="paragraph"><p>To test your own script, enter some Swift code below, or in any other window.</p></div>
-<div class="paragraph"><p>TrySwift gives you a few built-in "apps" to run, as needed by each example.
-It executes on a pool of virtual machines, one VM per Swift run (at the moment).</p></div>
-<div class="paragraph"><p>The Swift language is explained in the <a href="http://swift-lang.org/docs">Swift User Guide</a>.</p></div>
 </div>
 </div>
 </div>
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-08-11 09:45:10 CDT
+Last updated 2014-08-11 09:41:59 CDT
 </div>
 </div>
 </body>

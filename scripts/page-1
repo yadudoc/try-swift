@@ -19,3 +19,9 @@ You can run the built-in example scripts, change them, and run your own scripts.
 . *Multiple apps* - Show dependencies between apps to specify a workflow
 . *Multi-stage* - Example of a larger multi-stage workflow
 
+To test your own script, enter some Swift code below, or in any other window.
+
+TrySwift gives you a few built-in "apps" to run, as needed by each example.
+It executes on a pool of virtual machines, one VM per Swift run (at the moment).
+
+The Swift language is explained in the http://swift-lang.org/docs[Swift User Guide].

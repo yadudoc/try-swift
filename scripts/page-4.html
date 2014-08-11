@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
 <meta name="generator" content="AsciiDoc 8.6.9" />
-<title>Welcome to Try Swift!</title>
+<title></title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -733,74 +733,69 @@ asciidoc.install();
 </head>
 <body class="article">
 <div id="header">
-<h1>Welcome to Try Swift!</h1>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_introduction">Introduction</h2>
+<h2 id="_multiple_apps">Multiple apps</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>This web interface lets you learn Swift from your browser - nothing to install.
-You can run the built-in example scripts, change them, and run your own scripts.</p></div>
-<div class="ulist"><ul>
+<div class="paragraph"><p>After all the parallel simulations in an ensemble run have completed, it is typically necessary to gather and analyze their results with some kind of post-processing analysis program or script. This script shows an example of this.</p></div>
+<div class="paragraph"><p>The first change in this script is to the simulate script:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>app (file o) simulate_app (int time)
+{
+  simulate "-t" time stdout=filename(o);
+}</code></pre>
+</div></div>
+<div class="paragraph"><p>Simulate now takes an argument, time. The command "simulate -t 10" will sleep for 10 seconds before printing a value. This is an example of how to pass command line arguments to an app in Swift.</p></div>
+<div class="paragraph"><p>We introduce a new app call called stats:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>app (file o) stats_app (file s[])
+{
+  stats filenames(s) stdout=filename(o);
+}</code></pre>
+</div></div>
+<div class="paragraph"><p>The stats app function takes an array of files as input (file s[]). The stats app takes a list of files, reads the numbers contained inside, and prints the average value. The filenames() function simply prints a list of all filenames contained within a file array.</p></div>
+<div class="paragraph"><p>Within the foreach loop:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>simout = simulate_app(time);
+sims[i] = simout;</code></pre>
+</div></div>
+<div class="paragraph"><p>We now add each simout file to the sims array before finally passing all the files to stats</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>foreach i in [1:nsims] {
+  string fname = strcat("output/sim_",i,".out");
+  file simout &lt;single_file_mapper; file=fname&gt;
+  simout = simulate_app(time);
+  sims[i] = simout;
+}
+
+file average &lt;"output/average.out"&gt;
+average = stats_app(sims);</code></pre>
+</div></div>
+<div class="paragraph"><p>Execute the script and view output/average.out to verify it succeeded.</p></div>
+<div class="olist arabic"><div class="title">Exercises</div><ol class="arabic">
 <li>
 <p>
-select a code example using the navigation buttons
+Modify the simulate_app function so that it accepts a second int that will representing range (hint: multiple inputs are separated by commas).
 </p>
 </li>
 <li>
 <p>
-view the explanation of the example here
-</p>
-</li>
-<li>
-<p>
-click [Execute] to run the example
-</p>
-</li>
-<li>
-<p>
-click [File outputs] to view the output files produced by your script
-</p>
-</li>
-<li>
-<p>
-click [Reset] to restore the example to its initial state (LOSES YOUR CHANGES!)
-</p>
-</li>
-</ul></div>
-<div class="olist arabic"><div class="title">The example scripts are:</div><ol class="arabic">
-<li>
-<p>
-<strong>Hello World</strong> - Shows the basic syntax for running an app to produce a file
-</p>
-</li>
-<li>
-<p>
-<strong>Foreach</strong> - Introduces the foreach statement to run multiple apps parallel
-</p>
-</li>
-<li>
-<p>
-<strong>Multiple apps</strong> - Show dependencies between apps to specify a workflow
-</p>
-</li>
-<li>
-<p>
-<strong>Multi-stage</strong> - Example of a larger multi-stage workflow
+Modify the simulate command line arguments. The current arguments are "-t time". Simulate takes another command line option, -r. The -r option sets the range of random numbers it generates. Call simulate with the added options -r 1000.
 </p>
 </li>
 </ol></div>
-<div class="paragraph"><p>To test your own script, enter some Swift code below, or in any other window.</p></div>
-<div class="paragraph"><p>TrySwift gives you a few built-in "apps" to run, as needed by each example.
-It executes on a pool of virtual machines, one VM per Swift run (at the moment).</p></div>
-<div class="paragraph"><p>The Swift language is explained in the <a href="http://swift-lang.org/docs">Swift User Guide</a>.</p></div>
 </div>
 </div>
 </div>
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-08-11 09:45:10 CDT
+Last updated 2014-08-11 09:45:22 CDT
 </div>
 </div>
 </body>
