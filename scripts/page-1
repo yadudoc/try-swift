@@ -1,0 +1,21 @@
+Welcome to Try Swift!
+=====================
+
+Introduction
+------------
+
+This web interface lets you learn Swift from your browser - nothing to install.
+You can run the built-in example scripts, change them, and run your own scripts.
+
+* select a code example using the navigation buttons
+* view the explanation of the example here
+* click [Execute] to run the example
+* click [File outputs] to view the output files produced by your script
+* click [Reset] to restore the example to its initial state (LOSES YOUR CHANGES!)
+
+.The example scripts are:
+. *Hello World* - Shows the basic syntax for running an app to produce a file
+. *Foreach* - Introduces the foreach statement to run multiple apps parallel
+. *Multiple apps* - Show dependencies between apps to specify a workflow
+. *Multi-stage* - Example of a larger multi-stage workflow
+
