@@ -2,6 +2,15 @@ var maxPage = -1;
 var currentPage = 1;
 var prev, next;
 
+var index = [
+	"blah",
+	"Introduction",
+	"Hello World!",
+	"Foreach",
+	"Multiple apps",
+	"Multi-stage workflows"
+];
+
 function setVisiblePage(n) {
   var examples = document.getElementsByClassName('example');
   for(var i=0; i < examples.length; i++) {
@@ -17,17 +26,27 @@ function hideFiles() {
     $('#outputs').hide();
 }
 
+function check_buttons() {
+	$('#topics').val(index[currentPage]);
+	if (currentPage == maxPage) {
+			next.setAttribute('disabled', true);
+	} else if (currentPage == 1) {
+		prev.setAttribute('disabled', true);
+	} else {
+		prev.removeAttribute('disabled');
+		next.removeAttribute('disabled');
+	}
+}
+
 function show_next() {
 	currentPage++;
 	if (currentPage <= maxPage) {
 		setVisiblePage(currentPage);
 		editor.setValue($('#source-' + currentPage).text(), -1);
-		prev.removeAttribute('disabled');
+		// prev.removeAttribute('disabled');
 		document.getElementById('swiftOutput').innerHTML = "";
 		hideFiles();
-		if (currentPage == maxPage) {
-			next.setAttribute('disabled', true);
-		}
+		check_buttons();
 	}
 }
 
@@ -36,12 +55,10 @@ function show_prev() {
 	if (currentPage > 0) {
 		setVisiblePage(currentPage);
 		editor.setValue($('#source-' + currentPage).text(), -1);
-		next.removeAttribute('disabled');
+		// next.removeAttribute('disabled');
 		document.getElementById('swiftOutput').innerHTML = "";
 		hideFiles();
-		if (currentPage == 1) {
-			prev.setAttribute('disabled', true);
-		}
+		check_buttons();
 	} 
 }
 
@@ -121,6 +138,16 @@ document.addEventListener('DOMContentLoaded', function() {
 	prev.addEventListener('click', show_prev);
 	reset.addEventListener('click', reset_text);
 	execute.addEventListener('click', execute_code);
+
+	$(document).on("change", "#topics", function() {
+		var selectedTopic = $('#topics').val();
+		// if (selectedTopic !== "Select Topic") {
+		var page_num = index.indexOf(selectedTopic);
+		currentPage = page_num;
+		setVisiblePage(currentPage);
+		check_buttons();
+		
+	});
 
 	$(document).on("change", "#outputs", function(){
 		var selected = $('#outputs').val();

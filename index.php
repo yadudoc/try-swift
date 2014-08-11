@@ -411,8 +411,16 @@ file stats_log<"output/average.log">;
 				</select>
 			</div>
 			<div id="rightButtons">
-				<button id="previousButton" disabled="true">Previous</button>
-				<button id="nextButton">Next</button>
+				<button id="previousButton" disabled="true"> <b>&#60;<b> </button>
+				<select id="topics">
+<!-- 					<option>Select Topic</option> -->
+					<option>Introduction</option>
+					<option>Hello World!</option>
+					<option>Foreach</option>
+					<option>Multiple apps</option>
+					<option>Multi-stage workflows</option>
+				</select>
+				<button id="nextButton"> <b>&#62;<b> </button>
 			</div> <!-- buttons -->
 		</div>
 		<div id="bottom-bottom">
