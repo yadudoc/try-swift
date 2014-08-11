@@ -38,19 +38,12 @@ function check_buttons() {
 	}
 }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 519e29951e3f1971f32946019a8e9682021acf28
 function show_next() {
 	currentPage++;
 	if (currentPage <= maxPage) {
 		setVisiblePage(currentPage);
 		editor.setValue($('#source-' + currentPage).text(), -1);
-<<<<<<< HEAD
-=======
-		// prev.removeAttribute('disabled');
->>>>>>> 519e29951e3f1971f32946019a8e9682021acf28
 		document.getElementById('swiftOutput').innerHTML = "";
 		hideFiles();
 		check_buttons();
@@ -62,10 +55,6 @@ function show_prev() {
 	if (currentPage > 0) {
 		setVisiblePage(currentPage);
 		editor.setValue($('#source-' + currentPage).text(), -1);
-<<<<<<< HEAD
-=======
-		// next.removeAttribute('disabled');
->>>>>>> 519e29951e3f1971f32946019a8e9682021acf28
 		document.getElementById('swiftOutput').innerHTML = "";
 		hideFiles();
 		check_buttons();
