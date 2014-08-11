@@ -29,9 +29,11 @@ function hideFiles() {
 function check_buttons() {
 	$('#topics').val(index[currentPage]);
 	if (currentPage == maxPage) {
-			next.setAttribute('disabled', true);
+	    next.setAttribute('disabled', true);
+	    prev.removeAttribute('disabled');
 	} else if (currentPage == 1) {
-		prev.setAttribute('disabled', true);
+	    prev.setAttribute('disabled', true);
+	    next.removeAttribute('disabled');
 	} else {
 		prev.removeAttribute('disabled');
 		next.removeAttribute('disabled');
@@ -80,6 +82,8 @@ function execute_code() {
 		alert("Source text is empty!");
 		return false;
 	}
+	next.setAttribute('disabled', true);
+	prev.setAttribute('disabled', true);
 	//alert("execute clicked. in tryswift.js 1 ");
 	$.ajax({
 		type: 'POST',
@@ -87,14 +91,13 @@ function execute_code() {
 		data:{'source': sourceCode},
 	})
 	.done(function (data) {
-		
 		var urlArray = data.split("\n");
 		tailf(urlArray[0], "#swiftOutput");
-
 		$.post("getfiles.php", {dir: urlArray[1]}).done(function(filedata) {
 			$('#outputs').append(filedata);
 			var x = document.getElementById("outputs");
 			$('#outputs').show();
+			check_buttons();
 		    });
 	    });
 	
@@ -122,10 +125,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	$(document).on("change", "#topics", function() {
 		var selectedTopic = $('#topics').val();
-		// if (selectedTopic !== "Select Topic") {
 		var page_num = index.indexOf(selectedTopic);
 		currentPage = page_num;
 		setVisiblePage(currentPage);
+		editor.setValue($('#source-' + currentPage).text(), -1);
+		document.getElementById('swiftOutput').innerHTML = "";
+		hideFiles();
 		check_buttons();
 		
 	});
