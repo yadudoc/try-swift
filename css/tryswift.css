@@ -4,7 +4,7 @@
 
 #wrapright {
   top: 0px;
-  left: 55%;
+  left: 52%;
   right: 10px;
   overflow: auto; 
   position: absolute;
@@ -24,11 +24,11 @@ body {
 }
 
 
-h1 {
+/*h1 {
   text-align: center;
   font-size: 18pt;
 }
-
+*/
 /*a:link {
   color: #1609f9;
 }*/

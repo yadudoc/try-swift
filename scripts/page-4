@@ -1,0 +1,53 @@
+Multiple apps
+-------------
+
+After all the parallel simulations in an ensemble run have completed, it is typically necessary to gather and analyze their results with some kind of post-processing analysis program or script. This script shows an example of this.
+
+The first change in this script is to the simulate script:
+
+-----
+app (file o) simulate_app (int time)
+{
+  simulate "-t" time stdout=filename(o);
+}
+-----
+
+Simulate now takes an argument, time. The command "simulate -t 10" will sleep for 10 seconds before printing a value. This is an example of how to pass command line arguments to an app in Swift.
+
+We introduce a new app call called stats:
+
+-----
+app (file o) stats_app (file s[])
+{
+  stats filenames(s) stdout=filename(o);
+}
+-----
+
+The stats app function takes an array of files as input (file s[]). The stats app takes a list of files, reads the numbers contained inside, and prints the average value. The filenames() function simply prints a list of all filenames contained within a file array.
+
+Within the foreach loop:
+-----
+simout = simulate_app(time);
+sims[i] = simout;
+-----
+
+We now add each simout file to the sims array before finally passing all the files to stats
+
+-----
+foreach i in [1:nsims] {
+  string fname = strcat("output/sim_",i,".out");
+  file simout <single_file_mapper; file=fname>
+  simout = simulate_app(time);
+  sims[i] = simout;
+}
+
+file average <"output/average.out">
+average = stats_app(sims);
+-----
+
+Execute the script and view output/average.out to verify it succeeded.
+
+.Exercises
+. Modify the simulate_app function so that it accepts a second int that will representing range (hint: multiple inputs are separated by commas).
+. Modify the simulate command line arguments. The current arguments are "-t time". Simulate takes another command line option, -r. The -r option sets the range of random numbers it generates. Call simulate with the added options -r 1000.
+

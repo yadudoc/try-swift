@@ -1,0 +1,27 @@
+Multi-stage workflows
+---------------------
+
+This example expands the workflow pattern of the previous example by adding additional stages to the workflow. Here, we generate a dynamic seed value that will be used by all of the simulations, and for each simulation, we run an pre-processing application to generate a unique "bias file". This pattern is shown below, followed by the Swift script.
+
+image::005-multistage.png[align="center"]
+
+Note that the workflow is based on data flow dependencies: each simulation depends on the seed value, calculated in these two dependent statements:
+
+-----
+seedfile = genseed_app(1);
+int seedval = readData(seedfile);
+-----
+
+The workflow also depends on the bias file, computed and then consumed in these two dependent statements:
+
+-----
+biasfile = genbias_app(1000, 20);
+(simout,simlog) = simulation_app(steps, range, biasfile, 
+1000000, values);
+-----
+
+We produce 20 values in each bias file. Simulations of less than 20 values ignore the unneeded numbers, while simualtions of more than 20 will use the last bias number for all values past 20.
+
+.Exercises
+. Adjust the code to produce the same number of bias values as is needed for each simulation.
+. Modify the script to generate a unique seed value for each simulation.

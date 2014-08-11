@@ -1,0 +1,38 @@
+Foreach
+-------
+
+In this example, we first change our application. Instead of using "echo", we use an app called simulate. The simulate application serves as a trivial proxy for any more complex scientific simulation application. In this example, simulate will print a single number in the range of 1-100.
+-----
+app (file o) simulate_app ()
+{
+  simulate stdout=filename(o);
+}
+-----
+
+Swift is a simple scripting language for executing many instances of ordinary application programs on distributed parallel resources. Swift scripts run many copies of ordinary programs concurrently, using statements like this:
+-----
+foreach i in [1:10] 
+{
+  string fname=strcat("output/sim_", i, ".out");
+  file f ;
+  f = simulate_app();
+}
+-----
+
+In this example the foreach loop will iterate over a range of numbers from 0 to 9. It will then map an output file and run the simulate app. The important thing to realize about this example is that every iteration will run in parallel (up to a user defined throttle).
+
+Another new feature in this example is the file mapper. In the first hello world example, we saw a simplified version of a file mapper with the line:
+
+-----
+file out <"out.txt">;
+-----
+
+This is the same as saying:
+
+-----
+file out <single_file_mapper; file="output.txt">;
+-----
+
+Defining a file mapper in this way allows a file name to be the content of a string or the output of another function. The strcat function combines multiple strings into a single string.
+
+Execute the script and examine the results. You should see 10 files creates with random numbers.
