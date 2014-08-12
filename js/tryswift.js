@@ -1,6 +1,6 @@
 var maxPage = -1;
 var currentPage = 1;
-var prev, next;
+var prev, next, topics;
 
 var index = [
 	"blah",
@@ -65,7 +65,7 @@ function show_prev() {
 
 
 var editor = ace.edit("editor");
-editor.setFontSize('16px');
+editor.setFontSize('14px');
 editor.setTheme("ace/theme/KatzenMilch");
 editor.getSession().setMode("ace/mode/text");
 // editor.setShowPrintMargin(false);
@@ -84,7 +84,10 @@ function execute_code() {
 	}
 	next.setAttribute('disabled', true);
 	prev.setAttribute('disabled', true);
-	//alert("execute clicked. in tryswift.js 1 ");
+	topics.setAttribute('disabled', true);
+	document.getElementById('swiftOutput').innerHTML = "";
+	hideFiles();
+
 	$.ajax({
 		type: 'POST',
 		url: 'tryswift.php',
@@ -98,6 +101,7 @@ function execute_code() {
 			var x = document.getElementById("outputs");
 			$('#outputs').show();
 			check_buttons();
+			topics.removeAttribute('disabled');
 		    });
 	    });
 	
@@ -117,11 +121,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	prev = document.getElementById('previousButton');
 	reset = document.getElementById('resetButton');
 	execute = document.getElementById('executeButton');
+	topics = document.getElementById('topics');
 
 	next.addEventListener('click', show_next);
 	prev.addEventListener('click', show_prev);
 	reset.addEventListener('click', reset_text);
 	execute.addEventListener('click', execute_code);
+	
 
 	$(document).on("change", "#topics", function() {
 		var selectedTopic = $('#topics').val();

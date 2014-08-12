@@ -190,7 +190,7 @@
 
 <div class="example hidden" id="page-1">
 
-<iframe src="scripts/page-1.html" style="border-style: none; width: 100%; height: 1000px;"></iframe>
+<iframe src="scripts/page-1.html" style="border-style: none; width: 100%; height: 1600px;"></iframe>
 
 <textarea id="source-1">
 tracef("Hello, World! This is my %s code!\n","Swift");</textarea>
@@ -199,7 +199,7 @@ tracef("Hello, World! This is my %s code!\n","Swift");</textarea>
 
 <div class="example hidden" id="page-2">
 
-<iframe src="scripts/page-2.html" style="border-style: none; width: 100%; height: 1000px"></iframe>
+<iframe src="scripts/page-2.html" style="border-style: none; width: 100%; height: 1600px"></iframe>
 
 <textarea id="source-2">
 type file;
@@ -217,7 +217,7 @@ out = echo_app("Hello world!");
 
 <div class="example hidden" id="page-3">
 
-<iframe src="scripts/page-3.html" style="border-style: none; width: 100%; height: 1000px"></iframe>
+<iframe src="scripts/page-3.html" style="border-style: none; width: 100%; height: 1600px"></iframe>
 
 <textarea id="source-3">
 type file;
@@ -240,7 +240,7 @@ foreach i in [1:10] {
 
 <div class="example hidden" id="page-4">
 
-<iframe src="scripts/page-4.html" style="border-style: none; width: 100%; height: 1000px"></iframe>
+<iframe src="scripts/page-4.html" style="border-style: none; width: 100%; height: 1600px"></iframe>
 
 <textarea id="source-4">
 type file;
@@ -274,7 +274,7 @@ average = stats_app(sims);
 
 <div class="example hidden" id="page-5">
 
-<iframe src="scripts/page-5.html" style="border-style: none; width: 100%; height: 1000px"></iframe>
+<iframe src="scripts/page-5.html" style="border-style: none; width: 100%; height: 1600px"></iframe>
 
 <textarea id="source-5">
 type file;
