@@ -185,21 +185,21 @@
 
 <div id="wrapright">
 
-<!-- <div id="tutorial"> -->
+<div id="tutorial">
 
 
 <div class="example hidden" id="page-1">
 
-	<iframe src="scripts/01-page.html" style="border-style: none; width: 100%; height: 1600px;"></iframe>
+<iframe src="scripts/01-page.html" style="border-style: none; width: 100%; height: 1600px;"></iframe>
 
-	<textarea id="source-1">
+<textarea id="source-1">
 tracef("Hello, World! This is my %s code!\n","Swift");</textarea>
 
 </div>  <!-- example -->
 
 <div class="example hidden" id="page-2">
 
-	<iframe src="scripts/02-page.html" style="border-style: none; width: 100%; height: 1600px"></iframe>
+<iframe src="scripts/02-page.html" style="border-style: none; width: 100%; height: 1600px"></iframe>
 
 <textarea id="source-2">
 type file;
@@ -340,7 +340,7 @@ file stats_log<"output/average.log">;
 
 			</div>
 
-	<!--	</div>  tutorial -->
+		</div> <!-- tutorial -->
 
 	</div> <!-- wrapright -->
 
@@ -391,9 +391,16 @@ file stats_log<"output/average.log">;
 
 </div>
 
-<script src="js/tryswift2.js"></script>
-
 </body>
+
+<script type="text/javascript">
+alert("Hello");
+	var index = <?php file_get_contents(scripts/index.txt) ?>;
+	alert(index);
+
+</script>
+
+<script src="js/tryswift2.js"></script>
 
 
 </html>

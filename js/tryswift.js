@@ -68,9 +68,6 @@ var editor = ace.edit("editor");
 editor.setFontSize('14px');
 editor.setTheme("ace/theme/KatzenMilch");
 editor.getSession().setMode("ace/mode/text");
-// editor.setShowPrintMargin(false);
-// editor.setHighlightActiveLine(false);
-// editor.setDisplayIndentGuides(false);
 
 function reset_text() {
 	editor.setValue($('#source-' + currentPage).text(), -1);
