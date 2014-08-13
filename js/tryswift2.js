@@ -14,6 +14,11 @@ function setVisiblePage(n) {
   visiblePage.classList.remove('hidden');
 }
 
+var editor = ace.edit("editor");
+editor.setFontSize('14px');
+editor.setTheme("ace/theme/KatzenMilch");
+editor.getSession().setMode("ace/mode/text");
+
 $(document).ready(function () {
 	$.get('scripts/index.txt', function(data) {	
 		index = data.split("\n");
@@ -29,11 +34,68 @@ $(document).ready(function () {
 				source = "scripts/01-page.html";
 				return "<iframe src=\"" + source + "\" style=\"border-style: none; width: 100%; height: 1600px;\"></iframe>";
 			});
-			setVisiblePage(1);
+
+			var source = document.createElement('div');
+			source.id = 'source' + i;
+			source.className = 'sourceToHide';
+			document.getElementById('page-'+i).appendChild(source);
+			// editor.setValue($('#source-' + i).text(), -1);
 		}
-		
+
+		next = document.getElementById('nextButton');
+		prev = document.getElementById('previousButton');
+		reset = document.getElementById('resetButton');
+		execute = document.getElementById('executeButton');
+		topics = document.getElementById('topics');
+
+		next.addEventListener('click', show_next);
+		prev.addEventListener('click', show_prev);
+		reset.addEventListener('click', reset_text);
+		execute.addEventListener('click', execute_code);
+
+		$(document).on("change", "#topics", function() {
+			var selectedTopic = $('#topics').val();
+			var page_num = index.indexOf(selectedTopic);
+			currentPage = page_num;
+			setVisiblePage(currentPage);
+			editor.setValue($('#source-' + currentPage).text(), -1);
+			document.getElementById('swiftOutput').innerHTML = "";
+			hideFiles();
+			check_buttons();
+		});
+
+		$(document).on("change", "#outputs", function(){
+			var selected = $('#outputs').val();
+			if (selected != "File outputs") {
+			popupwindow($('#outputs').val(), '', 800, 600); 
+			}
+		});
+
+		setVisiblePage(1);
+		editor.setValue($("#source-1").text(), -1);
+
 	});
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
