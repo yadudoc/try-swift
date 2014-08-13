@@ -23,14 +23,13 @@ $(document).ready(function () {
 			var page = document.createElement('div');
 			page.className = 'example hidden';
 			page.id = 'page-' + i;
-			if (i == 1) {
-				document.getElementById('wrapright').appendChild(page);
-				$("div#page-1").html(function() {
-					source = "scripts/01-page.html";
-					return "<iframe src=\"" + source + " style=\"border-style: none; width: 100%; height: 1600px;\"></iframe>";
-				});
-				setVisiblePage(1);
-			}
+	
+			document.getElementById('wrapright').appendChild(page);
+			$("div#page-1").html(function() {
+				source = "scripts/01-page.html";
+				return "<iframe src=\"" + source + "\" style=\"border-style: none; width: 100%; height: 1600px;\"></iframe>";
+			});
+			setVisiblePage(1);
 		}
 		
 	});
