@@ -8,7 +8,8 @@ var index = [
 	"Hello World!",
 	"Foreach",
 	"Multiple apps",
-	"Multi-stage workflows"
+	"Multi-stage workflows",
+	"Particle simulation"
 ];
 
 function setVisiblePage(n) {
