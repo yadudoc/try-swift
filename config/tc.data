@@ -9,3 +9,9 @@ local simulate /home/tryswift/tryswift/bin/simulate.sh
 local stats /home/tryswift/tryswift/bin/stats.sh
 local genseed /home/tryswift/tryswift/bin/simulate.sh
 local genbias /home/tryswift/tryswift/bin/simulate.sh
+local md /home/tryswift/tryswift/xsede.2014.0425/app/md
+local mdstats /home/tryswift/tryswift/xsede.2014.0425/app/mdstats
+local mdmaxk /home/tryswift/tryswift/xsede.2014.0425/app/mdmaxk
+local renderframe /home/tryswift/tryswift/xsede.2014.0425/app/renderframe
+local convert /usr/bin/convert
+

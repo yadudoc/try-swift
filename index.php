@@ -362,7 +362,7 @@ type kineticInfo {
 
 app (file out, file traj) simulation (int npart, int steps, int trsnaps, float mass)
 {
-  md     3 npart steps trsnaps ".0001" mass "0.1 1.0 0.2 0.05 50.0 0.1" 2.5 2.0 randomInt() @out @traj;
+  md 3 npart steps trsnaps ".0001" mass "0.1 1.0 0.2 0.05 50.0 0.1" 2.5 2.0 randomInt() @out @traj;
 }
 
 app (file o) analyze (file s[])

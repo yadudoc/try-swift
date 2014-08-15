@@ -1,0 +1,28 @@
+Swift 0.95 RC6 swift-r7900 cog-r3908
+RunID: run001
+Progress: Wed, 13 Aug 2014 15:54:33-0500
+Progress: Wed, 13 Aug 2014 15:54:34-0500  Selecting site:8  Active:2
+Progress: Wed, 13 Aug 2014 15:54:42-0500  Selecting site:6  Active:2  Finished successfully:2
+Progress: Wed, 13 Aug 2014 15:54:50-0500  Selecting site:4  Active:2  Finished successfully:4
+Progress: Wed, 13 Aug 2014 15:54:58-0500  Selecting site:2  Active:2  Finished successfully:6
+Progress: Wed, 13 Aug 2014 15:55:06-0500  Selecting site:1  Submitted:1  Finished successfully:8
+Progress: Wed, 13 Aug 2014 15:55:07-0500  Active:2  Finished successfully:8
+Progress: Wed, 13 Aug 2014 15:55:14-0500  Active:1  Finished successfully:9
+min eK simulation: 7 eK: 5.732048
+max eK simulation: 6 eK: 13.208949
+Progress: Wed, 13 Aug 2014 15:55:15-0500  Selecting site:18  Active:2  Finished successfully:12
+Progress: Wed, 13 Aug 2014 15:55:17-0500  Selecting site:16  Active:2  Finished successfully:14
+Progress: Wed, 13 Aug 2014 15:55:19-0500  Selecting site:14  Active:2  Finished successfully:16
+Progress: Wed, 13 Aug 2014 15:55:21-0500  Selecting site:12  Active:2  Finished successfully:18
+Progress: Wed, 13 Aug 2014 15:55:22-0500  Selecting site:11  Active:2  Finished successfully:19
+Progress: Wed, 13 Aug 2014 15:55:23-0500  Selecting site:10  Active:2  Finished successfully:20
+Progress: Wed, 13 Aug 2014 15:55:24-0500  Selecting site:9  Active:2  Finished successfully:22
+Progress: Wed, 13 Aug 2014 15:55:26-0500  Selecting site:7  Active:2  Finished successfully:24
+Progress: Wed, 13 Aug 2014 15:55:28-0500  Selecting site:5  Active:2  Finished successfully:26
+Progress: Wed, 13 Aug 2014 15:55:30-0500  Selecting site:2  Active:3  Finished successfully:28
+Progress: Wed, 13 Aug 2014 15:55:32-0500  Selecting site:1  Active:3  Finished successfully:29
+Progress: Wed, 13 Aug 2014 15:55:33-0500  Active:2  Finished successfully:31
+Progress: Wed, 13 Aug 2014 15:55:34-0500  Submitted:1  Active:1  Finished successfully:32
+Progress: Wed, 13 Aug 2014 15:55:35-0500  Active:2  Finished successfully:32
+Progress: Wed, 13 Aug 2014 15:55:38-0500  Active:1  Finished successfully:33
+Final status:Wed, 13 Aug 2014 15:55:39-0500  Finished successfully:34

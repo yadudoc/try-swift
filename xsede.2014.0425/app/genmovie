@@ -1,0 +1,6 @@
+#! /bin/sh
+
+movie=$1
+shift
+
+convert -delay 20 $* $movie

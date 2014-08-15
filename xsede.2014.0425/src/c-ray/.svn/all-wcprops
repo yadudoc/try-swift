@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/vdl2/!svn/ver/7800/demo/xsede.2014.0425/src/c-ray
+END
+scene.cr
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/vdl2/!svn/ver/7793/demo/xsede.2014.0425/src/c-ray/scene.cr
+END
+test.sh
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/vdl2/!svn/ver/7797/demo/xsede.2014.0425/src/c-ray/test.sh
+END
+c-ray.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/vdl2/!svn/ver/7793/demo/xsede.2014.0425/src/c-ray/c-ray.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/vdl2/!svn/ver/7800/demo/xsede.2014.0425/src/c-ray/Makefile
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/vdl2/!svn/ver/7793/demo/xsede.2014.0425/src/c-ray/README
+END
+sphfract.cr
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/vdl2/!svn/ver/7793/demo/xsede.2014.0425/src/c-ray/sphfract.cr
+END
