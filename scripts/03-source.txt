@@ -1,0 +1,12 @@
+type file;
+
+app (file o) simulate_app ()
+{
+  simulate stdout=filename(o);
+}
+
+foreach i in [1:10] {
+  string fname=strcat("output/sim_", i, ".out");
+  file f <single_file_mapper; file=fname>;
+  f = simulate_app();
+}

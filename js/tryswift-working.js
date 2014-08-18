@@ -26,8 +26,19 @@ function setVisiblePage(n) {
 function setEditorPage(n) {
 	var i = numConvert(n);
 	$.get("scripts/" + i + "-source.txt", function(data) {
+		//$("div#source-" + i).html(data);
 		editor.setValue(data, -1);
 	});
+	//editor.setValue($('#source-01').text(), -1);
+	// var source = document.createElement('div');
+	// source.id = 'source-' + i;
+	// source.className = 'sourceToHide';
+	// document.getElementById('page-'+i).appendChild(source);
+	// $.get("scripts/" + i + "-source.txt", function(data) {
+	// 	//alert(data);
+	// 	$("div#source-" + i).html(data);
+	// 	alert($('#source-01').text());
+	// });
 }
 
 function hideFiles() {
@@ -53,6 +64,8 @@ function show_next() {
 	currentPage++;
 	if (currentPage <= maxPage) {
 		setVisiblePage(currentPage);
+		// editor.setValue($('#source-' + currentPage).text(), -1);
+
 		setEditorPage(currentPage);
 		document.getElementById('swiftOutput').innerHTML = "";
 		hideFiles();
@@ -64,6 +77,7 @@ function show_prev() {
 	currentPage--;
 	if (currentPage > 0) {
 		setVisiblePage(currentPage);
+		//editor.setValue($('#source-' + currentPage).text(), -1);
 		setEditorPage(currentPage);
 		document.getElementById('swiftOutput').innerHTML = "";
 		hideFiles();
@@ -114,7 +128,13 @@ function popupwindow(url, name, w, h) {
 $(document).ready(function () {
 	$.get('scripts/index.txt', function(data) {	
 		index = data.split("\n");
-		maxPage = index.length - 1;
+		maxPage = index.length;
+
+		// var page = document.createElement('div');
+		// page.className = 'example hidden';
+		// page.id = 'page-01';
+		// document.getElementById('wrapright').appendChild(page);
+		// $("div#page-01").html("<iframe src=\"scripts/01-page.html\" style=\"border-style: none; width: 100%; height: 1600px;\"></iframe>");
 
 		for (var i = 1; i <= maxPage; i++) {
 			i = numConvert(i);
@@ -127,14 +147,54 @@ $(document).ready(function () {
 				return "<iframe src=\"" + pageLoc + "\" style=\"border-style: none; width: 100%; height: 1600px;\"></iframe>";
 			});
 
-			var opt = document.createElement('option');
-			opt.id = 'opt-' + i;
-			document.getElementById('topics').appendChild(opt);
-			$("option#opt-" + i).html(index[i-1]);
+			var source = document.createElement('div');
+			source.id = 'source-' + i;
+			source.className = 'sourceToHide';
+			document.getElementById('wrapright').appendChild(source);
+			$.get("scripts/" + i + "-source.txt", function(data) {
+				//$("div#source-" + i).html(data);
+				//alert(data);
+				$("div#source-" + i).html(data);
+				alert($('#source-' + i).text());
+			});
+		
+			// var source = document.createElement('div');
+			// source.id = 'source-' + i;
+			// source.className = 'sourceToHide';
+			// document.getElementById('wrapright').appendChild(source);
+			// $("div#source-" + i).html(function() {
+			// 	var sourceLoc = "scripts/" + i + "-source.txt";
+			// 	return "<iframe src=\"" + sourceLoc + "\"></iframe>";
+			// });
+
+
+			// var source = document.createElement('div');
+			// source.id = 'source-' + i;
+			// source.className = 'sourceToHide';
+			// document.getElementById('page-'+i).appendChild(source);
+			// $.get("scripts/" + i + "-source.txt", function(data) {
+			// 	//alert(data);
+			// 	$("div#source-" + i).html(data);
+			// 	alert($('#source-01').text());
+			// });
+
 		}
 
+		var source = document.createElement('div');
+		source.id = 'source-01';
+		source.className = 'sourceToHide';
+		document.getElementById('wrapright').appendChild(source);
+		
+		//$("#source-01").load("scripts/01-source.txt");
+		//alert($('#source-01').text());
+		//$("div#source-01").html("<iframe src=\"scripts/01-source.txt\"></iframe>");
+		//alert($('#source-01').text());
+		
 		setVisiblePage(1);
 		setEditorPage(1);
+		//editor.setValue($('#source-01').text(), -1);
+		
+		//editor.setValue("hello");
 		
 		next = document.getElementById('nextButton');
 		prev = document.getElementById('previousButton');
@@ -164,6 +224,10 @@ $(document).ready(function () {
 				popupwindow($('#outputs').val(), '', 800, 600); 
 			}
 		});
+		
+		// setVisiblePage(1);
+		// editor.setValue($('#source-' + 04).text(), -1);
+		
 	});
 });
 

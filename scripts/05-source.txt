@@ -1,0 +1,59 @@
+type file;
+
+app (file out) genseed_app (int nseeds)
+{
+  genseed "-r" 2000000 "-n" nseeds stdout=@out;
+}
+
+app (file out) genbias_app (int bias_range, int nvalues)
+{
+  genbias "-r" bias_range "-n" nvalues stdout=@out;
+}
+
+app (file out, file log) simulation_app (int timesteps, int sim_range,
+    file bias_file, int scale, int sim_count)
+{
+  simulate "-t" timesteps "-r" sim_range "-B" @bias_file "-x" scale
+           "-n" sim_count stdout=@out stderr=@log;
+}
+
+app (file out, file log) analyze_app (file s[])
+{
+  stats filenames(s) stdout=@out stderr=@log;
+}
+
+# Values that shape the run
+int nsim = 10;   # number of simulation programs to run
+int steps = 1;   # number of timesteps (seconds) per simulation
+int range = 100; # range of the generated random numbers
+int values = 10; # number of values generated per simulation
+
+# Main script and data
+tracef("\n*** Script parameters: nsim=%i range=%i num values=%i\n\n", 
+	      	     nsim, range, values);
+
+# Dynamically generated bias for simulation ensemble
+file seedfile<"output/seed.dat">;
+seedfile = genseed_app(1);
+
+int seedval = readData(seedfile);
+tracef("Generated seed=%i\n", seedval);
+
+file sims[]; # Array of files to hold each simulation output
+
+foreach i in [0:nsim-1] {
+  file biasfile <single_file_mapper; 
+					 file=strcat("output/bias_",i,".dat")>;
+  file simout   <single_file_mapper; 
+					 file=strcat("output/sim_",i,".out")>;
+  file simlog   <single_file_mapper; 
+					 file=strcat("output/sim_",i,".log")>;
+  biasfile = genbias_app(1000, 20);
+  (simout,simlog) = simulation_app(steps, range, biasfile, 
+										   1000000, values);
+  sims[i] = simout;
+}
+
+file stats_out<"output/average.out">;
+file stats_log<"output/average.log">;
+(stats_out,stats_log) = analyze_app(sims);
