@@ -1,15 +1,17 @@
 var maxPage = -1;
 var currentPage = 1;
-var prev, next, topics;
+var prev, next, topics; // buttons
+var index; // examples
+var maxPage;
 
-var index = [
-	"blah",
-	"Introduction",
-	"Hello World!",
-	"Foreach",
-	"Multiple apps",
-	"Multi-stage workflows"
-];
+var editor = ace.edit("editor");
+editor.setFontSize('14px');
+editor.setTheme("ace/theme/KatzenMilch");
+editor.getSession().setMode("ace/mode/text");
+
+function numConvert(n) {
+	return n < 10? "0" + n: n;
+}
 
 function setVisiblePage(n) {
   var examples = document.getElementsByClassName('example');
@@ -17,8 +19,26 @@ function setVisiblePage(n) {
     var page = examples[i];
     page.classList.add('hidden');
   }
-  var visiblePage = document.getElementById('page-' + n);
+  var visiblePage = document.getElementById('page-' + numConvert(n));
   visiblePage.classList.remove('hidden');
+}
+
+function setEditorPage(n) {
+	var i = numConvert(n);
+	$.get("scripts/" + i + "-source.txt", function(data) {
+		//$("div#source-" + i).html(data);
+		editor.setValue(data, -1);
+	});
+	//editor.setValue($('#source-01').text(), -1);
+	// var source = document.createElement('div');
+	// source.id = 'source-' + i;
+	// source.className = 'sourceToHide';
+	// document.getElementById('page-'+i).appendChild(source);
+	// $.get("scripts/" + i + "-source.txt", function(data) {
+	// 	//alert(data);
+	// 	$("div#source-" + i).html(data);
+	// 	alert($('#source-01').text());
+	// });
 }
 
 function hideFiles() {
@@ -27,7 +47,7 @@ function hideFiles() {
 }
 
 function check_buttons() {
-	$('#topics').val(index[currentPage]);
+	$('#topics').val(index[currentPage-1]);
 	if (currentPage == maxPage) {
 	    next.setAttribute('disabled', true);
 	    prev.removeAttribute('disabled');
@@ -40,12 +60,13 @@ function check_buttons() {
 	}
 }
 
-
 function show_next() {
 	currentPage++;
 	if (currentPage <= maxPage) {
 		setVisiblePage(currentPage);
-		editor.setValue($('#source-' + currentPage).text(), -1);
+		// editor.setValue($('#source-' + currentPage).text(), -1);
+
+		setEditorPage(currentPage);
 		document.getElementById('swiftOutput').innerHTML = "";
 		hideFiles();
 		check_buttons();
@@ -56,21 +77,16 @@ function show_prev() {
 	currentPage--;
 	if (currentPage > 0) {
 		setVisiblePage(currentPage);
-		editor.setValue($('#source-' + currentPage).text(), -1);
+		//editor.setValue($('#source-' + currentPage).text(), -1);
+		setEditorPage(currentPage);
 		document.getElementById('swiftOutput').innerHTML = "";
 		hideFiles();
 		check_buttons();
 	} 
 }
 
-
-var editor = ace.edit("editor");
-editor.setFontSize('14px');
-editor.setTheme("ace/theme/KatzenMilch");
-editor.getSession().setMode("ace/mode/text");
-
 function reset_text() {
-	editor.setValue($('#source-' + currentPage).text(), -1);
+	setEditorPage(currentPage);
 }
 
 function execute_code() {
@@ -100,8 +116,7 @@ function execute_code() {
 			check_buttons();
 			topics.removeAttribute('disabled');
 		    });
-	    });
-	
+	    });	
 }
 
 function popupwindow(url, name, w, h) {
@@ -110,62 +125,88 @@ function popupwindow(url, name, w, h) {
     return window.open(url, name, 'width='+w+', height='+h+', top='+top+', left='+left);
 } 
 
-document.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function () {
+	$.get('scripts/index.txt', function(data) {	
+		index = data.split("\n");
+		maxPage = index.length;
 
-	maxPage = document.getElementsByClassName('example').length;
+		// var page = document.createElement('div');
+		// page.className = 'example hidden';
+		// page.id = 'page-01';
+		// document.getElementById('wrapright').appendChild(page);
+		// $("div#page-01").html("<iframe src=\"scripts/01-page.html\" style=\"border-style: none; width: 100%; height: 1600px;\"></iframe>");
 
-	next = document.getElementById('nextButton');
-	prev = document.getElementById('previousButton');
-	reset = document.getElementById('resetButton');
-	execute = document.getElementById('executeButton');
-	topics = document.getElementById('topics');
+		for (var i = 1; i <= maxPage; i++) {
+			i = numConvert(i);
+			var page = document.createElement('div');
+			page.className = 'example hidden';
+			page.id = 'page-' + i;
+			document.getElementById('wrapright').appendChild(page);
+			$("div#page-" + i).html(function() {
+				var pageLoc = "scripts/" + i + "-page.html";
+				return "<iframe src=\"" + pageLoc + "\" style=\"border-style: none; width: 100%; height: 1600px;\"></iframe>";
+			});
+		
+			// var source = document.createElement('div');
+			// source.id = 'source-' + i;
+			// source.className = 'sourceToHide';
+			// document.getElementById('page-'+i).appendChild(source);
+			// $.get("scripts/" + i + "-source.txt", function(data) {
+			// 	//alert(data);
+			// 	$("div#source-" + i).html(data);
+			// 	alert($('#source-01').text());
+			// });
 
-	next.addEventListener('click', show_next);
-	prev.addEventListener('click', show_prev);
-	reset.addEventListener('click', reset_text);
-	execute.addEventListener('click', execute_code);
-	
+		}
 
-	$(document).on("change", "#topics", function() {
-		var selectedTopic = $('#topics').val();
-		var page_num = index.indexOf(selectedTopic);
-		currentPage = page_num;
-		setVisiblePage(currentPage);
-		editor.setValue($('#source-' + currentPage).text(), -1);
-		document.getElementById('swiftOutput').innerHTML = "";
-		hideFiles();
-		check_buttons();
+		// var source = document.createElement('div');
+		// 	source.id = 'source-01';
+		// 	source.className = 'sourceToHide';
+		// 	document.getElementById('page-01').appendChild(source);
+		
+		//$("#source-01").load("tryswift.php");
+		//$("div#source-01").html("<iframe src=\"scripts/01-source.txt\"></iframe>");
+		//alert($("#source-01").length);
+		setVisiblePage(1);
+		setEditorPage(1);
+		//editor.setValue($('#source-01').text(), -1);
+		//alert($('#source-01').text());
+		//editor.setValue("hello");
+		
+		next = document.getElementById('nextButton');
+		prev = document.getElementById('previousButton');
+		reset = document.getElementById('resetButton');
+		execute = document.getElementById('executeButton');
+		topics = document.getElementById('topics');
+
+		next.addEventListener('click', show_next);
+		prev.addEventListener('click', show_prev);
+		reset.addEventListener('click', reset_text);
+		execute.addEventListener('click', execute_code);
+
+		$(document).on("change", "#topics", function() {
+			var selectedTopic = $('#topics').val();
+			var page_num = index.indexOf(selectedTopic) + 1;
+			currentPage = page_num;
+			setVisiblePage(currentPage);
+			setEditorPage(currentPage);
+			document.getElementById('swiftOutput').innerHTML = "";
+			hideFiles();
+			check_buttons();
+		});
+
+		$(document).on("change", "#outputs", function(){
+			var selected = $('#outputs').val();
+			if (selected != "File outputs") {
+				popupwindow($('#outputs').val(), '', 800, 600); 
+			}
+		});
+		
+		// setVisiblePage(1);
+		// editor.setValue($('#source-' + 04).text(), -1);
 		
 	});
-
-	$(document).on("change", "#outputs", function(){
-		var selected = $('#outputs').val();
-		if (selected != "File outputs") {
-		popupwindow($('#outputs').val(), '', 800, 600); 
-		}
-		// $('#swiftOutput').load($("#outputs").val());
-	    });
-
-	setVisiblePage(1);
-	editor.setValue($("#source-1").text(), -1);
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+});
 
 
 
