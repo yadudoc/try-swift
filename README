@@ -1,0 +1,27 @@
+try-swift
+=========
+To add new pages to TrySwift, you only need to edit the '/scripts' folder. Put the Swift source code in a text file and name it in the format of 'XX-source.txt', XX being the page number it should be at. Name the HTML file (preferably in Asciidoc format to follow the convention) 'XX-page.html' with XX being the same page number. Next open index.txt, where a list of the pages are being kept tracked, put the name you want to give to the new page in a new line. 
+
+Note: make sure you did not put another new line after the last name in index.txt, as it will get parsed and a new completely blank page will be generated.
+
+To reorder the pages, simply change the XX part of the names to the number you want, but remember to change other names correspondingly to make sure there are no conflicting or missing pages. Lead the number with a '0' if the page number is a single digit.
+
+For example, if there are five pages in TrySwift, the necessary files in '/scripts' are therefore:
+01-page.html
+01-source.txt
+02-page.html
+02-source.txt
+03-page.html
+03-source.txt
+04-page.html
+04-source.txt
+05-page.html
+05-source.txt
+index.txt
+
+And the content of index.txt is:
+Introduction
+Hello World!
+Foreach
+Multiple apps
+Multi-stage workflows
