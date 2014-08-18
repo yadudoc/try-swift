@@ -188,18 +188,18 @@
 <!-- <div id="tutorial"> -->
 
 
-<div class="example hidden" id="page-1">
+<!-- <div class="example hidden" id="page-1"> -->
 
-	<iframe src="scripts/01-page.html" style="border-style: none; width: 100%; height: 1600px;"></iframe>
+	<!-- <iframe src="scripts/01-page.html" style="border-style: none; width: 100%; height: 1600px;"></iframe>
 
 	<textarea id="source-1">
-tracef("Hello, World! This is my %s code!\n","Swift");</textarea>
+tracef("Hello, World! This is my %s code!\n","Swift");</textarea> -->
 
-</div>  <!-- example -->
+<!-- </div>  --> <!-- example -->
 
-<div class="example hidden" id="page-2">
+<!-- <div class="example hidden" id="page-2"> -->
 
-	<iframe src="scripts/02-page.html" style="border-style: none; width: 100%; height: 1600px"></iframe>
+	<!-- <iframe src="scripts/02-page.html" style="border-style: none; width: 100%; height: 1600px"></iframe>
 
 <textarea id="source-2">
 type file;
@@ -211,13 +211,13 @@ app (file out) echo_app (string s)
 
 file out <"out.txt">;
 out = echo_app("Hello world!");
-</textarea>
+</textarea> -->
 
-</div>
+<!-- </div>
 
-<div class="example hidden" id="page-3">
+<div class="example hidden" id="page-3"> -->
 
-<iframe src="scripts/03-page.html" style="border-style: none; width: 100%; height: 1600px"></iframe>
+<!-- <iframe src="scripts/03-page.html" style="border-style: none; width: 100%; height: 1600px"></iframe>
 
 <textarea id="source-3">
 type file;
@@ -232,15 +232,15 @@ foreach i in [1:10] {
   file f <single_file_mapper; file=fname>;
   f = simulate_app();
 }
-</textarea>
+</textarea> -->
 
 
-</div>
+<!-- </div>
 
 
-<div class="example hidden" id="page-4">
+<div class="example hidden" id="page-4"> -->
 
-<iframe src="scripts/04-page.html" style="border-style: none; width: 100%; height: 1600px"></iframe>
+<!-- <iframe src="scripts/04-page.html" style="border-style: none; width: 100%; height: 1600px"></iframe>
 
 <textarea id="source-4">
 type file;
@@ -268,13 +268,13 @@ foreach i in [1:nsims] {
 
 file average <"output/average.out">;
 average = stats_app(sims);
-</textarea>
+</textarea> -->
 
-</div>
+<!-- </div>
 
-<div class="example hidden" id="page-5">
+<div class="example hidden" id="page-5"> -->
 
-<iframe src="scripts/05-page.html" style="border-style: none; width: 100%; height: 1600px"></iframe>
+<!-- <iframe src="scripts/05-page.html" style="border-style: none; width: 100%; height: 1600px"></iframe>
 
 <textarea id="source-5">
 type file;
@@ -300,8 +300,8 @@ app (file out, file log) analyze_app (file s[])
 {
   stats filenames(s) stdout=@out stderr=@log;
 }
-
-# Values that shape the run
+ -->
+<!-- # Values that shape the run
 int nsim = 10;   # number of simulation programs to run
 int steps = 1;   # number of timesteps (seconds) per simulation
 int range = 100; # range of the generated random numbers
@@ -336,9 +336,9 @@ foreach i in [0:nsim-1] {
 file stats_out<"output/average.out">;
 file stats_log<"output/average.log">;
 (stats_out,stats_log) = analyze_app(sims);
-</textarea>
+</textarea> -->
 
-			</div>
+			<!-- </div> -->
 
 	<!--	</div>  tutorial -->
 

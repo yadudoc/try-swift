@@ -9,19 +9,19 @@ editor.setFontSize('14px');
 editor.setTheme("ace/theme/KatzenMilch");
 editor.getSession().setMode("ace/mode/text");
 
+function numConvert(n) {
+	return n < 10? "0" + n: n;
+}
+
 function setVisiblePage(n) {
   var examples = document.getElementsByClassName('example');
   for(var i=0; i < examples.length; i++) {
     var page = examples[i];
     page.classList.add('hidden');
   }
-  var visiblePage = document.getElementById('page-' + n);
+  var visiblePage = document.getElementById('page-' + numConvert(n));
   visiblePage.classList.remove('hidden');
 }
-
-// function page_convert(n) {
-// 	return n<10? "0" + n: n;
-// }
 
 function hideFiles() {
     document.getElementById('outputs').innerHTML = "<option>File outputs</option>";
@@ -64,62 +64,110 @@ function show_prev() {
 	} 
 }
 
+function reset_text() {
+	editor.setValue($('#source-' + currentPage).text(), -1);
+}
+
+function execute_code() {
+	var sourceCode = editor.getValue();
+	if (!sourceCode) {
+		alert("Source text is empty!");
+		return false;
+	}
+	next.setAttribute('disabled', true);
+	prev.setAttribute('disabled', true);
+	topics.setAttribute('disabled', true);
+	document.getElementById('swiftOutput').innerHTML = "";
+	hideFiles();
+
+	$.ajax({
+		type: 'POST',
+		url: 'tryswift.php',
+		data:{'source': sourceCode},
+	})
+	.done(function (data) {
+		var urlArray = data.split("\n");
+		tailf(urlArray[0], "#swiftOutput");
+		$.post("getfiles.php", {dir: urlArray[1]}).done(function(filedata) {
+			$('#outputs').append(filedata);
+			var x = document.getElementById("outputs");
+			$('#outputs').show();
+			check_buttons();
+			topics.removeAttribute('disabled');
+		    });
+	    });	
+}
+
+function popupwindow(url, name, w, h) {
+    var left = (screen.width/2)-(w/2);
+    var top = (screen.height/2)-(h/2);
+    return window.open(url, name, 'width='+w+', height='+h+', top='+top+', left='+left);
+} 
+
 $(document).ready(function () {
 	$.get('scripts/index.txt', function(data) {	
 		index = data.split("\n");
 		maxPage = index.length;
 
-		for (var i = 1; i <= maxPage; i++) {
-			if (i < 10) i = "0" + i;
-			var page = document.createElement('div');
-			page.className = 'example hidden';
-			page.id = 'page-' + i;
-			document.getElementById('wrapright').appendChild(page);
-			$("div#page-" + i).html(function() {
-				var pageLoc = "scripts/" + i + "-page.html";
-				return "<iframe src=\"" + pageLoc + "\" style=\"border-style: none; width: 100%; height: 1600px;\"></iframe>";
-			});
 
-			var source = document.createElement('div');
-			source.id = 'source' + i;
-			source.className = 'sourceToHide';
-			document.getElementById('page-'+i).appendChild(source);
-		}
+		var page = document.createElement('div');
+		page.className = 'example hidden';
+		page.id = 'page-01';
+		document.getElementById('wrapright').appendChild(page);
+		$("div#page-01").html("<iframe src=\"scripts/01-page.html\" style=\"border-style: none; width: 100%; height: 1600px;\"></iframe>");
 
-		next = document.getElementById('nextButton');
-		prev = document.getElementById('previousButton');
-		reset = document.getElementById('resetButton');
-		execute = document.getElementById('executeButton');
-		topics = document.getElementById('topics');
+		// for (var i = 1; i <= maxPage; i++) {
+		// 	if (i < 10) i = "0" + i;
+		// 	var page = document.createElement('div');
+		// 	page.className = 'example hidden';
+		// 	page.id = 'page-' + i;
+		// 	document.getElementById('wrapright').appendChild(page);
+		// 	$("div#page-" + i).html(function() {
+		// 		var pageLoc = "scripts/" + i + "-page.html";
+		// 		return "<iframe src=\"" + pageLoc + "\" style=\"border-style: none; width: 100%; height: 1600px;\"></iframe>";
+		// 	});
 
-		next.addEventListener('click', show_next);
-		prev.addEventListener('click', show_prev);
-		// reset.addEventListener('click', reset_text);
-		// execute.addEventListener('click', execute_code);
+		// 	var source = document.createElement('div');
+		// 	source.id = 'source' + i;
+		// 	source.className = 'sourceToHide';
+		// 	document.getElementById('page-'+i).appendChild(source);
+		// }
 		
 		setVisiblePage(1);
-		editor.setValue($('#source-' + 4).text(), -1);
+		// next = document.getElementById('nextButton');
+		// prev = document.getElementById('previousButton');
+		// reset = document.getElementById('resetButton');
+		// execute = document.getElementById('executeButton');
+		// topics = document.getElementById('topics');
+
+		// next.addEventListener('click', show_next);
+		// prev.addEventListener('click', show_prev);
+		// reset.addEventListener('click', reset_text);
+		// execute.addEventListener('click', execute_code);
+
+		// $(document).on("change", "#topics", function() {
+		// 	var selectedTopic = $('#topics').val();
+		// 	var page_num = index.indexOf(selectedTopic) + 1;
+		// 	currentPage = page_num;
+		// 	setVisiblePage(currentPage);
+		// 	editor.setValue($('#source-' + currentPage).text(), -1);
+		// 	document.getElementById('swiftOutput').innerHTML = "";
+		// 	hideFiles();
+		// 	check_buttons();
+		// });
+
+		// $(document).on("change", "#outputs", function(){
+		// 	var selected = $('#outputs').val();
+		// 	if (selected != "File outputs") {
+		// 		popupwindow($('#outputs').val(), '', 800, 600); 
+		// 	}
+		// });
+		
+		// setVisiblePage(1);
+		// editor.setValue($('#source-' + 04).text(), -1);
 		
 	});
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
