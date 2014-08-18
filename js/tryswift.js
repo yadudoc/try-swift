@@ -114,7 +114,7 @@ function popupwindow(url, name, w, h) {
 $(document).ready(function () {
 	$.get('scripts/index.txt', function(data) {	
 		index = data.split("\n");
-		maxPage = index.length;
+		maxPage = index.length - 1;
 
 		for (var i = 1; i <= maxPage; i++) {
 			i = numConvert(i);
@@ -126,6 +126,11 @@ $(document).ready(function () {
 				var pageLoc = "scripts/" + i + "-page.html";
 				return "<iframe src=\"" + pageLoc + "\" style=\"border-style: none; width: 100%; height: 1600px;\"></iframe>";
 			});
+
+			var opt = document.createElement('option');
+			opt.id = 'opt-' + i;
+			document.getElementById('topics').appendChild(opt);
+			$("option#opt-" + i).html(index[i-1]);
 		}
 
 		setVisiblePage(1);
