@@ -1,0 +1,25 @@
+type file;
+
+app (file o) simulate_app (int time)
+{
+  simulate "-t" time stdout=filename(o);
+}
+
+app (file o) stats_app (file s[])
+{
+  stats filenames(s) stdout=filename(o);
+}
+
+file sims[];
+int time = 5;
+int nsims = 10;
+
+foreach i in [1:nsims] {
+  string fname = strcat("output/sim_",i,".out");
+  file simout <single_file_mapper; file=fname>;
+  simout = simulate_app(time);
+  sims[i] = simout;
+}
+
+file average <"output/average.out">;
+average = stats_app(sims);
