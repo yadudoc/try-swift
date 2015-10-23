@@ -1,6 +1,6 @@
 #!/bin/bash
 
-webroot="/home/davidk/tryswift"
+webroot="/var/www/html/try-swift"
 maxwait=60
 counter=0
 

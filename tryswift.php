@@ -6,8 +6,8 @@
    }
 
    $source = $_POST['source'];
-   $web_directory = "/home/tryswift/tryswift";
-   $swift_cmd = "nohup /home/tryswift/swift-trunk/cog/modules/swift/dist/swift-svn/bin/swift -sites.file sites.xml -tc.file tc.data -config cf script.swift";
+   $web_directory = "/var/www/html";
+   $swift_cmd = "nohup /var/www/html/swift-0.96.2/bin/swift script.swift";
 
    # Create directory structure
    $unique = uniqid();
@@ -17,9 +17,10 @@
    if (!chdir($dirname))       { die("Unable to chdir to $dirname"); }
 
    # Copy and create Swift files
-   copy_file("$web_directory/config/sites.xml", "$dirname/sites.xml");
-   copy_file("$web_directory/config/tc.data", "$dirname/tc.data");
-   copy_file("$web_directory/config/cf", "$dirname/cf");
+   #copy_file("$web_directory/config/sites.xml", "$dirname/sites.xml");
+   #copy_file("$web_directory/config/tc.data", "$dirname/tc.data");
+   #copy_file("$web_directory/config/cf", "$dirname/cf");
+   copy_file("$web_directory/config/swift.conf", "$dirname/swift.conf");
    $script = $dirname . "/script.swift";
 
    if(!file_put_contents($script, $source)) {
@@ -27,7 +28,8 @@
    }
 
    # Run Swift
-#system("export PATH=/usr/local/jdk1.6.0/bin:$PATH");
+   system("export PATH=/usr/local/bin/jdk1.7.0_51/bin:$PATH");
+   system("export TRYSWIFTROOT=/var/www/html");
    system("echo Swift run starting at $( date +%I:%M:%S ) > $dirname/swift.out");
    system("$swift_cmd 2>&1 | sed -u -e 's/^[ \t]*//' -e s/'Selecting site:'/Ready:/g -e s/'Finished successfully:'/Done:/g >> $dirname/swift.out &");
 
