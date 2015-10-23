@@ -31,7 +31,7 @@
    system("export PATH=/usr/local/bin/jdk1.7.0_51/bin:$PATH");
    system("export TRYSWIFTROOT=/var/www/html");
    system("echo Swift run starting at $( date +%I:%M:%S ) > $dirname/swift.out");
-   system("$swift_cmd 2>&1 | sed -u -e 's/^[ \t]*//' -e s/'Selecting site:'/Ready:/g -e s/'Finished successfully:'/Done:/g >> $dirname/swift.out &");
+   system("$swift_cmd 2>&1 | sed -u -e 's/^[ \t]*//' -e s/'Selecting site:'/Ready:/g -e s/'Finished successfully:'/Done:/g >> $dirname/swift.out & echo $! > swift.pid");
 
    print "runs/$unique/swift.out\n";
    print "runs/$unique\n";
